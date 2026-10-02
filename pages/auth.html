@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DineFlow | Login & Signup</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="min-h-screen">
+    <header class="border-b-1 border-b-[var(--text-grey)] sticky top-0 z-50 bg-slate-50/96 px-3">
+        <div class="max-w-7xl mx-auto min-h-20 flex flex-wrap justify-between items-center">
+            <div class="logo">
+                <a href="../index.html" class="font-bold text-2xl md:text-3xl">Dine<span class="text-[var(--primary-color)]">Flow</span></a>
+            </div>
+            <nav class="nav-items hidden md:flex gap-5 md:gap-8 ">
+                <a href="../index.html">Home</a>
+                <a href="index.html">Menu</a>
+                <a href="index.html">About</a>
+                <a href="index.html">Contact</a>
+            </nav>
+            <div class="border-[var(--primary-color)]">
+                <button class="border-[var(--primary-color)]-500 flex gap-2 items-center border rounded-2xl text-sm  md:rounded-3xl px-3 py-1 md:py-2 md:px-5 text-[var(--primary-color)] md:font-medium hover:text-white hover:bg-[var(--primary-color)] transition duration-300 hover:cursor-pointer"><i class="fa-solid fa-user"></i> Account</button>
+            </div>
+        </div>
+    </header>
+    <main class="bg-slate-100">
+        <section class="px-4 py-15">
+            <div class="max-w-md mx-auto bg-white p-4 sm:p-6 md:p-10 rounded-2xl shadow-xl"  >
+                <p class="font-bold text-center text-2xl mb-2">Dine<span class="text-[var(--primary-color)]">Flow</span></p>
+                <p class="text-[var(--text-color)] text-xs font-medium text-center mb-10">Order. Dine. Enjoy</p>
+                <div class="bg-slate-100 rounded-2xl w-full flex gap-1 p-2 mb-5">
+                    <button id="loginBtn" class="w-1/2 rounded-xl bg-[var(--primary-color)] text-white py-2 hover:cursor-pointer">Login</button>
+                    <button id="signupBtn" class="w-1/2 rounded-xl bg-[var(--primary-color)] text-white py-2 hover:cursor-pointer">Sign Up</button>
+                </div>
+                <div id="loginToggle">
+                    <div class="text-center pb-5">
+                        <h4 class="text-3xl font-bold pb-2">Login</h4>
+                        <p class="font-normal text-[var(--text-color)] text-sm">Welcome back! Please login to your account.</p>
+                    </div>
+                    <form id="loginForm">
+                        <div class="mb-6 flex flex-col">
+                            <label for="email" class="text-[0.8125rem] font-medium text-gray-600 mb-2">EMAIL ADDRESS</label>
+                            <input type="text" id="email" class="p-2 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-1 ring-[var(--primary-color)]" placeholder="Enter your email">
+                        </div>
+                        <div class="mb-6 flex flex-col">
+                            <label for="email" class="text-[0.8125rem] font-medium text-gray-600 mb-2">PASSWORD</label>
+                            <input type="password" id="password" class="p-2 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-1 ring-[var(--primary-color)]" placeholder="Enter your password">
+                        </div>
+                        <button id="loginFormBtn" class="text-white w-full bg-[var(--primary-color)] rounded-lg py-2 shadow-md shadow-[var(--primary-color)] mb-6 hover:cursor-pointer">Login</button>
+                    </form>
+                    <p class="text-[13px] text-center text-[var(--text-color)]">Don't have an account? <a onclick="signupClick()" class="text-[var(--primary-color)] font-medium hover:cursor-pointer">Sign Up</a></p>
+                </div>
+                <div id="signupToggle">
+                   <div class="text-center pb-5">
+                        <h4 class="text-3xl font-bold pb-2">Sign Up</h4>
+                        <p class="font-normal text-[var(--text-color)] text-sm">Create your account and start ordering.</p>
+                    </div>
+                    <form id="signupForm">
+                        <div class="mb-6 flex flex-col">
+                            <label for="name" class="text-[0.8125rem] font-medium text-gray-600 mb-2">FULL NAME</label>
+                            <input type="text" id="name" class="p-2 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-1 ring-[var(--primary-color)]" placeholder="Enter your name">
+                        </div>
+                        <div class="mb-6 flex flex-col">
+                            <label for="email" class="text-[0.8125rem] font-medium text-gray-600 mb-2">EMAIL ADDRESS</label>
+                            <input type="text" id="email" class="p-2 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-1 ring-[var(--primary-color)]" placeholder="Enter your email">
+                        </div>
+                        <div class="mb-6 flex flex-col">
+                            <label for="password" class="text-[0.8125rem] font-medium text-gray-600 mb-2">PASSWORD</label>
+                            <input type="password" id="password" class="p-2 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-1 ring-[var(--primary-color)]" placeholder="Create a password">
+                        </div>
+                        <div class="mb-6 flex flex-col">
+                            <label for="confirmPassword" class="text-[0.8125rem] font-medium text-gray-600 mb-2">CONFIRM PASSWORD</label>
+                            <input type="password" id="confirmPassword" class="p-2 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-1 ring-[var(--primary-color)]" placeholder="Confirm your password">
+                        </div>
+                        <button id="signupFormBtn" class="text-white w-full bg-[var(--primary-color)] rounded-lg py-2 shadow-md shadow-[var(--primary-color)] mb-6 hover:cursor-pointer">Sign Up</button>
+                    </form>
+                    <p class="text-[13px] text-center text-[var(--text-color)]">Already have an account? <a onclick="loginClick()" class="text-[var(--primary-color)] font-medium hover:cursor-pointer">Login</a></p> 
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-[var(--secondary-color)] text-white ">
+        <div class="max-w-7xl mx-auto px-3 py-8 grid grid-cols-1 md:grid-cols-3 gap-7">
+            <div class="footer-logo">
+                <a href="index.html" class="font-bold text-xl">Dine<span class="text-[var(--primary-color)]">Flow</span></a>
+                <p class="text-gray-300 text-sm pt-3">Order. Dine. Enjoy.</p>
+            </div>
+            <div class="footer-nav flex flex-col gap-2">
+                <h4 class="font-medium text-lg pb-3">Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="index.html">Menu</a>
+                <a href="index.html">About</a>
+                <a href="index.html">Contact</a>
+            </div>
+            <div class="footer-contact">
+                <h4 class="font-medium text-lg pb-3">Contact Us</h4>
+                <div class="flex flex-col gap-3">
+                    <div class="flex items-center gap-4">
+                        <i class="fa-solid fa-phone text-[var(--primary-color)]"></i>
+                        <span>+91 907272345</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <i class="fa-solid fa-envelope text-[var(--primary-color)]"></i>
+                        <span>dineflow@gmail.com</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <i class="fa-solid fa-location-dot text-[var(--primary-color)]"></i>
+                        <span>Bangalore, India</span>
+                    </div>
+                    <div class="flex gap-4 mt-3">
+                        <a href="#" class="w-6 h-6 rounded-full bg-slate-800 flex justify-center items-center p-4">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-6 h-6 rounded-full bg-slate-800 flex justify-center items-center p-4">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-6 h-6 rounded-full bg-slate-800 flex justify-center items-center p-4">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto border-t-1 border-slate-700 text-center py-4 flex items-center justify-center">
+            <p class="text-xs text-gray-400 font-extralight">© 2026 DineFlow. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        let loginBtn = document.getElementById('loginBtn');
+        let signupBtn = document.getElementById('signupBtn');
+        let signupToggle = document.getElementById('signupToggle');
+        let loginToggle = document.getElementById('loginToggle');
+
+        function loginClick(){
+            signupBtn.classList.add("toggle-btn");
+            loginBtn.classList.remove("toggle-btn");
+            signupToggle.classList.add("hidden");
+            loginToggle.classList.remove("hidden");
+        }
+        function signupClick(){
+            loginBtn.classList.add("toggle-btn");
+            signupBtn.classList.remove("toggle-btn");
+            loginToggle.classList.add("hidden");
+            signupToggle.classList.remove("hidden");
+        }
+
+        signupBtn.classList.add("toggle-btn");
+        signupToggle.classList.add("hidden");
+        loginBtn.addEventListener("click",()=>{
+            loginClick();
+        });
+        signupBtn.addEventListener("click",()=>{
+            signupClick();
+        });
+    </script>
+</body>
+</html>

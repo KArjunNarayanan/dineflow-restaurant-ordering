@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DineFlow - Good Food Brings People Together</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body class="min-h-screen">
+    <header class="border-b-1 border-b-[var(--text-grey)] sticky top-0 z-50 bg-slate-50/96 px-3">
+        <div class="max-w-7xl mx-auto h-20 flex justify-between items-center">
+            <div class="logo">
+                <a href="index.html" class="font-bold text-2xl md:text-3xl">Dine<span class="text-[var(--primary-color)]">Flow</span></a>
+            </div>
+            <nav class="nav-items hidden md:flex gap-5 lg:gap-8 ">
+                <a href="index.html" id="home">Home</a>
+                <a href="index.html">Menu</a>
+                <a href="index.html">About</a>
+                <a href="index.html">Contact</a>
+            </nav>
+            <div class="border-[var(--primary-color)]">
+                <button id="loginBtnHome" class="border-[var(--primary-color)]-500 border rounded-2xl text-sm  md:rounded-3xl px-3 py-1.5 md:py-2 md:px-5 text-[var(--primary-color)] font-medium hover:text-white hover:bg-[var(--primary-color)] transition duration-300"><a href="./pages/auth.html">Login / Sign Up</a></button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section id="hero-section" class="px-4 sm:px-6 py-6 md:py-7">
+            <div class="max-w-7xl mx-auto rounded-2xl min-h-[500px] bg-gradient-to-br from-[#593120] via-[var(--secondary-color)] to-[var(--secondary-color)] flex flex-col md:flex-row md:justify-between md:items-center px-[30px] md:px-[60px]">
+                <div class="left-section w-full md:w-1/2 flex flex-col">
+                    <h1 class="font-bold text-4xl sm:text-5xl md:text-6xl text-white md:tracking-tight md:leading-[1.02] pt-10">Good Food<br> Brings People <br><span class="text-[var(--primary-color)]" >Together</span></h1>
+                    <p class="text-white text-base sm:text-lg mt-6 md:text-xl md:mt-9">Fresh ingredients. Great taste. Unforgettable moments.</p>
+                    <div class="flex flex-wrap gap-3 sm:gap-4 items-center mt-7 md:mt-10">
+                        <button class="text-white px-3 py-1 rounded-2xl text-[0.75rem] md:px-6 md:py-3 sm:text-sm font-semibold bg-[var(--primary-color)] sm:rounded-full shadow-md hover:opacity-90 transition">Order Now</button>
+                        <button class="text-white px-3 py-1 rounded-2xl text-[0.75rem] sm:text-sm font-semibold bg-gray-700 md:px-6 md:py-3 sm:rounded-full border border-gray-500 hover:bg-gray-600 transition">Book a Table</button>
+                    </div>
+                </div>
+                <div class="right-section w-full md:w-1/2 flex justify-center mt-8 md:justify-end mb-10">
+                    <div class="rounded-full w-64 h-64 sm:h-80 sm:w-80 md:h-[350px] md:w-[350px] lg:w-[410px] lg:h-[410px] border-4 border-gray-800">
+                        <img src="./assets/images/hero-image-food.jpg" alt="food-image" class="w-full h-full rounded-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="our-specialties" class=" px-4 sm:px-6 py-10">
+            <div class="max-w-7xl mx-auto" >
+                <div class=" mb-4 md:py-4 md:mb-6">
+                    <h2 class="text-2xl sm:text-3xl font-bold">Our Specialties</h2>
+                    <div class="para-view-more flex justify-between items-center">
+                        <p class="mt-1 font-normal text-[var(--text-color)] text-sm md:text-base">Discover our most popular dishes, made with love</p>
+                        <a href="index.html" class="text-[var(--primary-color)] text-sm md:text-base"><span class="desktop-only">View Menu </span><span class="arrow">→</span></a>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-5 md:gap-7">
+                    <div class="bg-white rounded-2xl p-2 sm:p-3 md:p-4 shadow-sm border border-gray-200 hover:shadow-md transition">
+                        <div class="overflow-hidden rounded-xl aspect-square">
+                            <img src="./assets/images/Pizzas.jpg" alt="Pizza-img" class="w-full h-full object-cover rounded-xl hover:scale-110 transition-transform duration-300 ease-in">
+                        </div>
+                        <div class="pt-4">
+                            <h3 class="text-sm sm:text-lg font-bold">Pizzas</h3>
+                            <p class="text-[var(--text-color)] font-normal text-xs sm:text-sm">Italian classics</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-2xl p-2 sm:p-3 md:p-4shadow-sm border border-gray-200 hover:shadow-md transition">
+                        <div class="overflow-hidden rounded-xl aspect-square">
+                            <img src="./assets/images/Burgers.jpg" alt="Burgers-img" class="w-full h-full object-cover rounded-xl hover:scale-110 transition-transform duration-300 ease-in">
+                        </div>
+                        <div class="pt-4">
+                            <h3 class="text-sm sm:text-lg font-bold">Burgers</h3>
+                            <p class="text-[var(--text-color)] font-normal text-xs sm:text-sm">Juicy & fresh</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-2xl p-2 sm:p-3 md:p-4 shadow-sm border border-gray-200 hover:shadow-md transition">
+                        <div class="overflow-hidden rounded-xl aspect-square">
+                            <img src="./assets/images/Pasta.jpg" alt="Pasta-img" class="w-full h-full object-cover rounded-xl hover:scale-110 transition-transform duration-300 ease-in">
+                        </div>
+                        <div class="pt-4">
+                            <h3 class="text-sm sm:text-lg font-bold">Pasta</h3>
+                            <p class="text-[var(--text-color)] font-normal text-xs sm:text-sm">Rich & flavorful</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-2xl p-2 sm:p-3 md:p-4 shadow-sm border border-gray-200 hover:shadow-md transition">
+                        <div class="overflow-hidden rounded-xl aspect-square">
+                            <img src="./assets/images/Desserts.jpg" alt="Desserts-img" class="w-full h-full object-cover rounded-xl hover:scale-110 transition-transform duration-300 ease-in">
+                        </div>
+                        <div class="pt-4">
+                            <h3 class="text-sm sm:text-lg font-bold">Desserts</h3>
+                            <p class="text-[var(--text-color)] font-normal text-xs sm:text-sm">Sweet endings</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="special-offer" class="px-4 sm:px-6 py-6 sm:py-9">
+            <div class="max-w-7xl mx-auto bg-[var(--secondary-color)] rounded-2xl overflow-hidden flex md:flex-row flex-col md:items-center md:justify-between">
+                <div class="left-section w-full px-5 sm:px-8 md:px-12 pt-7 pb-20 sm:py-8 md:py-10">
+                    <p class="text-[var(--primary-color)] font-bold text-sm sm:text-base">SPECIAL OFFER</p>
+                    <h2 class="text-white text-2xl sm:text-3xl font-bold mt-3 sm:mt-4 max-w-xl">Get <span class="text-[var(--primary-color)]">20% off </span>on all orders above ₹999!</h2>
+                    <button class="mt-5 sm:mt-6 md:mt-8 bg-[var(--primary-color)] text-white sm:px-8 px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition text-sm sm:text-base">Order Now</button>
+                </div>
+                <div class="right-section h-44 sm:h-56  w-full md:w-[32%] md:h-64 flex justify-center items-center">
+                    <img src="./assets/images/special-offer-img.jpg" alt="Special offer" class="w-full h-full object-cover object-center md:object-left scale-125">
+                </div>
+            </div>
+        </section>
+
+        <section id="popular-menu-items" class="px-6 py-6">
+            <div class="max-w-7xl mx-auto flex justify-between items-center py-10">
+                <h2 class="font-bold text-2xl sm:text-3xl">Popular Menu Items</h2>
+                <a href="index.html" class="text-[var(--primary-color)]"><span class="desktop-only">View All </span><span class="arrow">→</span></a>
+            </div>
+            <div class="popular-menu-card-container max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-7">
+                <div class="card">
+                    <div class="image-container">
+                        <img src="./assets/images/Biriyani.jpg" alt="Thalassery Dum Biryani">
+                        <span class="special-badge">KERALA SPECIAL</span>
+                        <button class="favorite-btn">♡</button>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-content-head">
+                            <h3>Thalassery Dum Biryani</h3>
+                            <span class="non-veg">Non-Veg</span>
+                        </div>
+                        <p class="description">Fragrant kaima rice cooked with tender spiced chicken, golden sultanas & cashews.</p>
+                        <div class="rating">
+                            <span class="text-orange-400 text-sm">★</span>
+                            <strong class="text-orange-400 text-sm">4.8</strong>
+                            <small>(124 reviews)</small>
+                        </div>
+                        <p class="font-semibold text-orange-600 text-lg">₹349</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="image-container">
+                        <img src="./assets/images/beef-roast-parrota.jpg" alt="Kerala Beef Roast & Parotta">
+                        <span class="special-badge">KERALA SPECIAL</span>
+                        <button class="favorite-btn">♡</button>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-content-head">
+                            <h3>Kerala Beef Roast & Parotta</h3>
+                            <span class="non-veg">Non-Veg</span>
+                        </div>
+                        <p class="description">Slow-roasted spicy black beef cubes with toasted coconut chips & flaky layered Malabar parotta.</p>
+                        <div class="rating">
+                            <span class="text-orange-400 text-sm">★</span>
+                            <strong class="text-orange-400 text-sm">4.9</strong>
+                            <small>(185 reviews)</small>
+                        </div>
+                        <p class="font-semibold text-orange-600 text-lg">₹309</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="image-container">
+                        <img src="./assets/images/Parrota.jpg" alt="Meen Pollichathu & Parotta">
+                        <span class="special-badge">KERALA SPECIAL</span>
+                        <button class="favorite-btn">♡</button>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-content-head">
+                            <h3>Meen Pollichathu & Parotta</h3>
+                            <span class="non-veg">Non-Veg</span>
+                        </div>
+                        <p class="description">Pearl spot fish marinated in spicy coastal masala wrapped in banana leaf with flaky Malabar parotta.</p>
+                        <div class="rating">
+                            <span class="text-orange-400 text-sm">★</span>
+                            <strong class="text-orange-400 text-sm">4.9</strong>
+                            <small>(98 reviews)</small>
+                        </div>
+                        <p class="font-semibold text-orange-600 text-lg">₹359</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="image-container">
+                        <img src="./assets/images/penne-alfredo.jpg" alt="Penne Alfredo">
+                        <button class="favorite-btn">♡</button>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-content-head">
+                            <h3>Penne Alfredo</h3>
+                            <span class="veg">Veg</span>
+                        </div>
+                        <p class="description">Creamy parmesan garlic sauce with sautéed mushrooms and fresh parsley.</p>
+                        <div class="rating">
+                            <span class="text-orange-400 text-sm">★</span>
+                            <strong class="text-orange-400 text-sm">4.6</strong>
+                            <small>(82 reviews)</small>
+                        </div>
+                        <p class="font-semibold text-orange-600 text-lg">₹279</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="px-4 py-12 md:py-20"> 
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center space-y-2 mb-10">
+                    <h4 class="font-medium text-sm text-[var(--primary-color)]">TESTIMONIALS</h4>
+                    <h2 class="text-3xl font-bold">What Our Diners Say</h2>
+                    <p class="mt-1 font-normal text-[var(--text-color)]">Real experiences from food lovers who dined with us.</p>
+                </div>
+                <div class="testimonial-card-container grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 px-2 sm:px-5 md:px-10">
+                    <div class="testimonial-card rounded-2xl p-5 w-full min-h-[250px] shadow-lg">
+                        <span class="text-[var(--primary-color)]">★ ★ ★ ★ ★</span>
+                        <p class="font-medium text-[var(--text-color)] text-sm mt-4 pb-6">“The Thalassery Biryani is arguably the most authentic you can get in town! The flavours are nuanced and the meat was perfectly tender.”</p>
+                        <div class="flex gap-4 pt-4 border-t border-[var(--text-grey)]">
+                            <div class="customer-logo w-[45px] h-[45px] rounded-full bg-orange-200 flex items-center justify-center">
+                                <span class="font-semibold text-sm text-orange-700">AS</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-sm">Ananya Sharma</h4>
+                                <p class="text-[var(--text-color)] text-xs">Food Critic & Regular Diner</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card rounded-2xl p-5 w-full min-h-[250px] shadow-lg">
+                        <span class="text-[var(--primary-color)]">★ ★ ★ ★ ★</span>
+                        <p class="font-medium text-[var(--text-color)] text-sm mt-4 pb-6">“Meen Pollichathu wrapped in banana leaf alongside warm Malabar parottas is sheer bliss. DineFlow never disappoints with quality.”</p>
+                        <div class="flex gap-4 pt-4 border-t border-[var(--text-grey)]">
+                            <div class="customer-logo w-[45px] h-[45px] rounded-full bg-orange-200 flex items-center justify-center">
+                                <span class="font-semibold text-sm text-orange-700">RM</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-sm">Rahul Menon</h4>
+                                <p class="text-[var(--text-color)] text-xs">Verified Customer</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card rounded-2xl p-5 w-full min-h-[250px] shadow-lg">
+                        <span class="text-[var(--primary-color)]">★ ★ ★ ★ ★</span>
+                        <p class="font-medium text-[var(--text-color)] text-sm mt-4 pb-6">“Super quick delivery, food arrived piping hot, and the packaging was immaculate. Loved the Penne Alfredo and desserts!”</p>
+                        <div class="flex gap-4 pt-4 border-t border-[var(--text-grey)]">
+                            <div class="customer-logo w-[45px] h-[45px] rounded-full bg-orange-200 flex items-center justify-center">
+                                <span class="font-semibold text-sm text-orange-700">PR</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-sm">Pooja Ravi</h4>
+                                <p class="text-[var(--text-color)] text-xs">Weekend Foodie</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[var(--secondary-color)] text-white ">
+        <div class="max-w-7xl mx-auto px-3 py-8 grid grid-cols-1 md:grid-cols-3 gap-7">
+            <div class="footer-logo">
+                <a href="index.html" class="font-bold text-xl">Dine<span class="text-[var(--primary-color)]">Flow</span></a>
+                <p class="text-gray-300 text-sm pt-3">Order. Dine. Enjoy.</p>
+            </div>
+            <div class="footer-nav flex flex-col gap-2">
+                <h4 class="font-medium text-lg pb-3">Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="index.html">Menu</a>
+                <a href="index.html">About</a>
+                <a href="index.html">Contact</a>
+            </div>
+            <div class="footer-contact">
+                <h4 class="font-medium text-lg pb-3">Contact Us</h4>
+                <div class="flex flex-col gap-3">
+                    <div class="flex items-center gap-4">
+                        <i class="fa-solid fa-phone text-[var(--primary-color)]"></i>
+                        <span>+91 907272345</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <i class="fa-solid fa-envelope text-[var(--primary-color)]"></i>
+                        <span>dineflow@gmail.com</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <i class="fa-solid fa-location-dot text-[var(--primary-color)]"></i>
+                        <span>Bangalore, India</span>
+                    </div>
+                    <div class="flex gap-4 mt-3">
+                        <a href="#" class="w-6 h-6 rounded-full bg-slate-800 flex justify-center items-center p-4">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-6 h-6 rounded-full bg-slate-800 flex justify-center items-center p-4">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-6 h-6 rounded-full bg-slate-800 flex justify-center items-center p-4">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto border-t-1 border-slate-700 text-center py-4 flex items-center justify-center">
+            <p class="text-xs text-gray-400 font-extralight">© 2026 DineFlow. All rights reserved.</p>
+        </div>
+    </footer>
+    
+</body>
+</html>
