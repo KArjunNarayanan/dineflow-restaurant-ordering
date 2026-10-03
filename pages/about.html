@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DineFlow | Table Booking</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=local_shipping,restaurant,eco,table_restaurant" />
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="min-h-screen flex flex-col">
+    <header class="border-b-1 border-b-[var(--text-grey)] sticky top-0 z-50 bg-slate-50/96 px-3">
+        <div class="max-w-7xl mx-auto h-20 flex justify-between items-center">
+            <div class="logo">
+                <a href="index.html" class="font-bold text-2xl md:text-3xl">Dine<span class="text-[var(--primary-color)]">Flow</span></a>
+            </div>
+            <nav class="nav-items hidden md:flex gap-5 lg:gap-8 ">
+                <a href="../index.html">Home</a>
+                <a href="#">Menu</a>
+                <a href="./about.html" id="current-tab">About</a>
+                <a href="./contact.html">Contact</a>
+            </nav>
+            <div class="border-[var(--primary-color)]">
+                <button id="loginBtnHome" class="border-[var(--primary-color)]-500 border rounded-2xl text-sm  md:rounded-3xl px-3 py-1.5 md:py-2 md:px-5 text-[var(--primary-color)] font-medium hover:text-white hover:bg-[var(--primary-color)] transition duration-300"><a href="./auth.html">Login / Sign Up</a></button>
+            </div>
+        </div>
+    </header>
+    <main class="bg-slate-100 flex-1">
+        <section class="px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col justify-center items-center pt-10  space-y-4 max-w-xl mx-auto text-center">
+                <div class="bg-orange-100 w-fit py-1 px-2">
+                    <p class="text-[var(--primary-color)] text-xs font-medium tracking-wide">WHY CHOOSE DINEFLOW</p>
+                </div>
+                <h1 class="font-bold text-2xl sm:text-3xl text-center">Fresh Flavors, Memorable Moments & Unmatched Service</h1>
+            </div>
+            <div class="max-w-2xl mx-auto tracking-wide">
+                <p class="font-normal text-[var(--text-color)] text-sm text-center pt-3 leading-6">At DineFlow, our passion is crafting heartwarming culinary memories. From authentic coastal Kerala treasures to artisan woodfired specialties, each plate celebrates locally sourced ingredients, meticulous craft, and effortless hospitality.</p>
+            </div>
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-7 py-6 sm:py-10">
+                    <div class="bg-white p-4 sm:p-6 py-7 w-full flex flex-col rounded-2xl shadow-sm border border-gray-100 hover:border-[var(--primary-color)]/30 transition duration-150">
+                        <div class="w-10 h-10 bg-orange-100 flex justify-center items-center rounded-lg mb-3 sm:5 md:mb-7">
+                            <span class="material-symbols-outlined text-[var(--primary-color)]">local_shipping</span>
+                        </div>
+                        <div class="space-y-3">
+                            <h4 class="font-semibold">Fast & Fresh Delivery</h4>
+                            <p class="text-[var(--text-color)] text-[0.75rem]">Piping hot meals delivered to your doorstep in 30 minutes with real-time tracking.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 sm:p-6 py-7 w-full flex flex-col shadow-sm border border-gray-100 hover:border-[var(--primary-color)]/30 transition duration-150 rounded-2xl">
+                        <div class="w-10 h-10 bg-orange-100 flex justify-center items-center rounded-lg mb-3 sm:5 md:mb-7">
+                            <span class="material-symbols-outlined text-2xl text-[var(--primary-color)]">restaurant</span>
+                        </div>
+                        <div class="space-y-3">
+                            <h4 class="font-semibold">Master Chef & Authentic Recipes</h4>
+                            <p class="text-[var(--text-color)] text-[0.75rem]">Handcrafted authentic coastal recipes and artisan woodfired classics made from scratch.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 sm:p-6 py-7 w-full flex flex-col shadow-sm border border-gray-100 hover:border-[var(--primary-color)]/30 transition duration-150 rounded-2xl">
+                        <div class="w-10 h-10 bg-orange-100 flex justify-center items-center rounded-lg mb-3 sm:5 md:mb-7">
+                            <span class="material-symbols-outlined text-2xl text-[var(--primary-color)]">eco</span>
+                        </div>
+                        <div class="space-y-3">
+                            <h4 class="font-semibold">Farm-to-Table Freshness</h4>
+                            <p class="text-[var(--text-color)] text-[0.75rem]">100% locally sourced, freshest produce and aromatic natural spices selected daily.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 sm:p-6 py-7 w-full flex flex-col shadow-sm border border-gray-100 hover:border-[var(--primary-color)]/30 transition duration-150 rounded-2xl">
+                        <div class="w-10 h-10 bg-orange-100 flex justify-center items-center rounded-lg mb-3 sm:5 md:mb-7">
+                            <span class="material-symbols-outlined text-2xl text-[var(--primary-color)]">table_restaurant</span>
+                        </div>
+                        <div class="space-y-3">
+                            <h4 class="font-semibold">Premium Dining Ambiance</h4>
+                            <p class="text-[var(--text-color)] text-[0.75rem]">Charming indoor and scenic outdoor patio seating with warm, attentive hospitality.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="book-table-form-container max-w-2xl mx-auto rounded-3xl my-5 mb-10 overflow-hidden">
+                <div class="relative bg-[url('../assets/images/book-table-header-image.jpg')] bg-cover bg-center h-48 top-section flex justify-start items-center">
+                    <div class="absolute h-full w-full bg-gradient-to-r from-black/95 via-black/70 to-transparent z-20"></div>
+                    <div class="px-8 sm:px-10">
+                        <div class="space-y-2 relative z-30">
+                            <h3 class="text-2xl sm:text-3xl text-white font-bold">Book a Table</h3>
+                            <p class="text-white text-sm sm:text-base">Reserve your table for a delightful dining experience.</p>
+                        </div>
+                    </div>
+                </div>
+                <form id="bookTableForm" class="px-8 sm:px-10 py-4 sm:py-8 flex flex-col bg-white gap-5">
+                    <div class="flex flex-col sm:flex-row gap-5">
+                        <div class="input-group flex flex-col gap-2 flex-1">
+                            <label for="dateInput" class="text-[0.8125rem] font-medium text-gray-600">DATE</label>
+                            <input type="date" id="dateInput" class="w-full p-3 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-2 ring-[var(--primary-color)] text-gray-600 ">
+                        </div>
+                        <div class="input-group flex flex-col gap-2 flex-1">
+                            <label for="timeSelect" class="text-[0.8125rem] font-medium text-gray-600">TIME</label>
+                            <select name="timeSelect" id="timeSelect" class="w-full p-3 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-2 ring-[var(--primary-color)] text-gray-600 ">
+                                <option value="">Select Time</option>
+                                <option value="12:00 PM (LUNCH)">12:00 PM (LUNCH)</option>
+                                <option value="1:00 PM (LUNCH)">1:00 PM (LUNCH)</option>
+                                <option value="2:00 PM (LUNCH)">2:00 PM (LUNCH)</option>
+                                <option value="6:30 PM (DINNER)">6:30 PM (DINNER)</option>
+                                <option value="7:30 PM (DINNER)">7:30 PM (DINNER)</option>
+                                <option value="8:30 PM (DINNER)">8:30 PM (DINNER)</option>
+                                <option value="9:30 PM (DINNER)">9:30 PM (DINNER)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-5">
+                        <div class="input-group flex flex-col gap-2 flex-1">
+                            <label for="noGuestInput" class="text-[0.8125rem] font-medium text-gray-600">NUMBER OF GUESTS</label>
+                            <select name="noGuestInput" id="noGuestInput" class="w-full p-3 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-2 ring-[var(--primary-color)] text-gray-600 ">
+                                <option value="1 Person">1 Person</option>
+                                <option value="2 Guests">2 Guests</option>
+                                <option value="3 Guests">3 Guests</option>
+                                <option value="4 Guests (Standard)"selected>4 Guests (Standard)</option>
+                                <option value="5 Guests">5 Guests</option>
+                                <option value="6 Guests">6 Guests</option>
+                                <option value="8 Guests (Large)">8 Guests (Large)</option>
+                                <option value="10+ Guests (Large)">10+ Guests (Party)</option>
+                            </select>
+                        </div>
+                        <div class="input-group flex flex-col gap-2 flex-1">
+                            <label for="seatPrefer" class="text-[0.8125rem] font-medium text-gray-600 uppercase">Seating Preference</label>
+                            <select name="seatPrefer" id="seatPrefer" class="w-full p-3 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-2 ring-[var(--primary-color)] text-gray-600 ">
+                                <option value="Indoor">Indoor</option>
+                                <option value="Outdoor Patio">Outdoor Patio</option>
+                                <option value="Rooftop Lounge">Rooftop Lounge</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex flex-col mb-4">
+                        <label for="special-request" class="mb-2 text-[0.8125rem] font-medium text-gray-600 uppercase">Special Requests</label>
+                        <textarea name="special-request" id="special-request" placeholder="Any special requests? (e.g. Birthday celebration, quiet table, baby chair)" class="p-4 rounded-xl w-full min-h-28 text-gray-700 text-base border border-[var(--text-grey)] outline-none focus:ring-2 ring-[var(--primary-color)] resize-none"></textarea>
+                    </div>
+                    <button id="bookTableBtn" class="text-white w-full bg-[var(--primary-color)] rounded-lg py-3 font-medium shadow-md shadow-[var(--primary-color)] hover:cursor-pointer">Book a Table</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-[var(--secondary-color)] text-white ">
+        <div class="max-w-7xl mx-auto px-3 py-8 grid grid-cols-1 md:grid-cols-3 gap-7">
+            <div class="footer-logo">
+                <a href="index.html" class="font-bold text-xl">Dine<span class="text-[var(--primary-color)]">Flow</span></a>
+                <p class="text-gray-300 text-sm pt-3">Order. Dine. Enjoy.</p>
+            </div>
+            <div class="footer-nav flex flex-col gap-2">
+                <h4 class="font-medium text-lg pb-3">Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="index.html">Menu</a>
+                <a href="index.html">About</a>
+                <a href="index.html">Contact</a>
+            </div>
+            <div class="footer-contact">
+                <h4 class="font-medium text-lg pb-3">Contact Us</h4>
+                <div class="flex flex-col gap-3">
+                    <div class="flex items-center gap-4">
+                        <i class="fa-solid fa-phone text-[var(--primary-color)]"></i>
+                        <span>+91 907272345</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <i class="fa-solid fa-envelope text-[var(--primary-color)]"></i>
+                        <span>dineflow@gmail.com</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <i class="fa-solid fa-location-dot text-[var(--primary-color)]"></i>
+                        <span>Bangalore, India</span>
+                    </div>
+                    <div class="flex gap-4 mt-3">
+                        <a href="#" class="w-6 h-6 rounded-full bg-slate-800 flex justify-center items-center p-4">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-6 h-6 rounded-full bg-slate-800 flex justify-center items-center p-4">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-6 h-6 rounded-full bg-slate-800 flex justify-center items-center p-4">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto border-t-1 border-slate-700 text-center py-4 flex items-center justify-center">
+            <p class="text-xs text-gray-400 font-extralight">© 2026 DineFlow. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -40,7 +40,7 @@
 .nav-items a:hover{
     color: var(--primary-color);
 }
-#home{
+#current-tab{
     color: var(--primary-color);
 }
 

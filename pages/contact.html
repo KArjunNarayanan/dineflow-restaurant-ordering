@@ -16,9 +16,9 @@
             </div>
             <nav class="nav-items hidden md:flex gap-5 md:gap-8 ">
                 <a href="../index.html">Home</a>
-                <a href="index.html">Menu</a>
-                <a href="index.html">About</a>
-                <a href="../pages/contact.html">Contact</a>
+                <a href="#">Menu</a>
+                <a href="./about.html">About</a>
+                <a href="./contact.html" id="current-tab">Contact</a>
             </nav>
             <div class="profile-user size-10 rounded-full bg-[var(--primary-color)] flex justify-center items-center border-3 border-[var(--secondary-color)] hover:opacity-86 hover:cursor-pointer">
                 <p class="font-semibold text-white">AR</p>
@@ -46,10 +46,9 @@
                     </div>
                     <div class="mb-6 flex flex-col">
                         <label for="message" class="text-[0.8125rem] font-medium text-gray-600 mb-2">MESSAGE</label>
-                        <textarea name="message" id="message" placeholder="Your message..." class="p-2 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-1 ring-[var(--primary-color)]"></textarea>
+                        <textarea name="message" id="message" placeholder="Your message..." class="p-2 min-h-25 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-1 ring-[var(--primary-color)]"></textarea>
                     </div>
-                    
-                    <button id="loginFormBtn" class="text-white w-full bg-[var(--primary-color)] rounded-lg py-2 shadow-md shadow-[var(--primary-color)] mb-6 hover:cursor-pointer">Send Message</button>
+                    <button id="loginFormBtn" class="text-white w-full bg-[var(--primary-color)] rounded-lg py-2 shadow-md shadow-[var(--primary-color)] mb-6 hover:cursor-pointer hover:opacity-95">Send Message</button>
                 </form>
             </div>
         </section>
