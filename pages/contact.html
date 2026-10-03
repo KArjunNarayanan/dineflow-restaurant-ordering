@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DineFlow | Contact Us</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
+</head>
+<body class="min-h-screen flex flex-col">
+    <header class="border-b-1 border-b-[var(--text-grey)] sticky top-0 z-50 bg-slate-50/96 px-3">
+        <div class="max-w-7xl mx-auto min-h-20 flex flex-wrap justify-between items-center">
+            <div class="logo">
+                <a href="../index.html" class="font-bold text-2xl md:text-3xl">Dine<span class="text-[var(--primary-color)]">Flow</span></a>
+            </div>
+            <nav class="nav-items hidden md:flex gap-5 md:gap-8 ">
+                <a href="../index.html">Home</a>
+                <a href="index.html">Menu</a>
+                <a href="index.html">About</a>
+                <a href="../pages/contact.html">Contact</a>
+            </nav>
+            <div class="profile-user size-10 rounded-full bg-[var(--primary-color)] flex justify-center items-center border-3 border-[var(--secondary-color)] hover:opacity-86 hover:cursor-pointer">
+                <p class="font-semibold text-white">AR</p>
+            </div>
+        </div>
+    </header>
+    <main class="bg-slate-100 flex-1">
+        <div class="relative text-center w-full bg-[url('../assets/images/contact-bg-image.jpg')] bg-cover bg-center h-60 sm:h-72">
+            <div class="absolute w-full h-full bg-[var(--color-overlay)]/80 z-10"></div>
+            <div class="z-20 relative space-y-3">
+                <h2 class="font-extrabold text-3xl md:text-4xl tracking-tight pt-20 md:pt-28 text-white">Get in Touch</h2>
+                <p class="text-slate-300 font-light text-base sm:text-lg"><i>We'd love to hear from you!</i></p>
+            </div>
+        </div>
+        <section class="px-4 sm:px-6 ">
+            <div class="max-w-xl mx-auto pb-8 relative z-40 -top-14">
+                <form id="contactForm" class="rounded-2xl shadow-2xl border bg-white border-gray-300 px-4 py-2 pt-5">
+                    <div class="mb-6 flex flex-col">
+                        <label for="name" class="text-[0.8125rem] font-medium text-gray-600 mb-2">NAME</label>
+                        <input type="text" id="name" class="p-2 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-1 ring-[var(--primary-color)]" placeholder="Your name">
+                    </div>
+                    <div class="mb-6 flex flex-col">
+                        <label for="email" class="text-[0.8125rem] font-medium text-gray-600 mb-2">EMAIL</label>
+                        <input type="text" id="email" class="p-2 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-1 ring-[var(--primary-color)]" placeholder="your@email.com">
+                    </div>
+                    <div class="mb-6 flex flex-col">
+                        <label for="message" class="text-[0.8125rem] font-medium text-gray-600 mb-2">MESSAGE</label>
+                        <textarea name="message" id="message" placeholder="Your message..." class="p-2 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-1 ring-[var(--primary-color)]"></textarea>
+                    </div>
+                    
+                    <button id="loginFormBtn" class="text-white w-full bg-[var(--primary-color)] rounded-lg py-2 shadow-md shadow-[var(--primary-color)] mb-6 hover:cursor-pointer">Send Message</button>
+                </form>
+            </div>
+        </section>
+        
+    </main>
+    <footer class="bg-[var(--secondary-color)] text-white ">
+        <div class="max-w-7xl mx-auto px-3 py-8 grid grid-cols-1 md:grid-cols-3 gap-7">
+            <div class="footer-logo">
+                <a href="index.html" class="font-bold text-xl">Dine<span class="text-[var(--primary-color)]">Flow</span></a>
+                <p class="text-gray-300 text-sm pt-3">Order. Dine. Enjoy.</p>
+            </div>
+            <div class="footer-nav flex flex-col gap-2">
+                <h4 class="font-medium text-lg pb-3">Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="index.html">Menu</a>
+                <a href="index.html">About</a>
+                <a href="index.html">Contact</a>
+            </div>
+            <div class="footer-contact">
+                <h4 class="font-medium text-lg pb-3">Contact Us</h4>
+                <div class="flex flex-col gap-3">
+                    <div class="flex items-center gap-4">
+                        <i class="fa-solid fa-phone text-[var(--primary-color)]"></i>
+                        <span>+91 907272345</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <i class="fa-solid fa-envelope text-[var(--primary-color)]"></i>
+                        <span>dineflow@gmail.com</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <i class="fa-solid fa-location-dot text-[var(--primary-color)]"></i>
+                        <span>Bangalore, India</span>
+                    </div>
+                    <div class="flex gap-4 mt-3">
+                        <a href="#" class="w-6 h-6 rounded-full bg-slate-800 flex justify-center items-center p-4">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-6 h-6 rounded-full bg-slate-800 flex justify-center items-center p-4">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-6 h-6 rounded-full bg-slate-800 flex justify-center items-center p-4">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto border-t-1 border-slate-700 text-center py-4 flex items-center justify-center">
+            <p class="text-xs text-gray-400 font-extralight">© 2026 DineFlow. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

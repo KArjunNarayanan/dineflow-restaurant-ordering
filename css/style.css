@@ -2,7 +2,8 @@
     --primary-color: rgb(234,88,12);
     --secondary-color: rgb(25, 30, 37); 
     --text-grey: rgb(233, 226, 226);
-    --text-color: rgb(98, 96, 96);   
+    --text-color: rgb(98, 96, 96); 
+    --color-overlay: rgb(23, 21, 21);  
 }
 *{
     box-sizing: border-box;
