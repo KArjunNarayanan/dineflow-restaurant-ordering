@@ -1,0 +1,138 @@
+
+{
+  "menu": [
+    {
+      "id": "food101",
+      "name": "Kerala Beef Roast & Parotta",
+      "description": "Tender slow-roasted beef with Kerala spices, coconut slices and flaky layered Malabar parotta.",
+      "price": 329,
+      "category": "Kerala Specials",
+      "foodType": "Main dishes",
+      "dietaryTags": ["Non-Veg"],
+      "image": "../assets/images/beef-roast-parrota.jpg",
+      "rating": 1,
+      "reviewCount": 0
+    },
+    {
+      "id": "food102",
+      "name": "Classic Burger",
+      "description": "Juicy grilled beef patty with fresh lettuce, tomato, cheese and our signature sauce.",
+      "price": 249,
+      "category": "Main dishes",
+      "foodType": "Burger",
+      "dietaryTags": ["Non-Veg"],
+      "image": "../assets/images/classic-burger.jpg",
+      "rating": 5,
+      "reviewCount": 0
+    },
+    {
+      "id": "food103",
+      "name": "Thalassery Dum Biriyani",
+      "description": "Fragrant Kaima rice with slow-cooked spiced chicken, cashews and sultanas.",
+      "price": 280,
+      "category": "Kerala Specials",
+      "foodType": "Main dishes",
+      "dietaryTags": ["Non-Veg"],
+      "image": "../assets/images/Biriyani.jpg",
+      "rating": 1,
+      "reviewCount": 0
+    },
+    {
+      "id": "food104",
+      "name": "Meen Pollichathu & Parotta",
+      "description": "Pearl spot fish marinated in spicy coastal masala wrapped in banana leaf with flaky Malabar parotta.",
+      "price": 240,
+      "category": "Kerala Specials",
+      "foodType": "Main dishes",
+      "dietaryTags": ["Non-Veg", "Gluten-Free"],
+      "image": "../assets/images/Parrota.jpg",
+      "rating": 3,
+      "reviewCount": 0
+    },
+    {
+      "id": "food105",
+      "name": "Paneer Butter Masala",
+      "description": "Soft paneer cubes simmered in a creamy tomato and butter gravy.",
+      "price": 220,
+      "category": "Main dishes",
+      "foodType": "Curry",
+      "dietaryTags": ["Veg"],
+      "image": "../assets/images/paneer-butter-masala.jpg",
+      "rating": 2,
+      "reviewCount": 0
+    },
+    {
+      "id": "food106",
+      "name": "Farmhouse Special Pizza",
+      "description": "Cheesy pizza topped with capsicum, onion, mushrooms and fresh vegetables.",
+      "price": 299,
+      "category": "Main dishes",
+      "foodType": "Pizza",
+      "dietaryTags": ["Veg"],
+      "image": "../assets/images/Pizzas.jpg",
+      "rating": 1,
+      "reviewCount": 0
+    },
+    {
+      "id": "food107",
+      "name": "Crispy Chicken Burger",
+      "description": "Crispy chicken fillet layered with lettuce, cheese and creamy burger sauce.",
+      "price": 399,
+      "category": "Main dishes",
+      "foodType": "Burger",
+      "dietaryTags": ["Non-Veg"],
+      "image": "../assets/images/crispy-chicken-burger.jpg",
+      "rating": 5,
+      "reviewCount": 0
+    },
+    {
+      "id": "food108",
+      "name": "Chocolate Brownie",
+      "description": "Rich chocolate brownie with a soft centre and a delicious fudgy texture.",
+      "price": 110,
+      "category": "Desserts & Drinks",
+      "foodType": "Dessert",
+      "dietaryTags": ["Veg"],
+      "image": "../assets/images/chocolate-cake.jpg",
+      "rating": 4,
+      "reviewCount": 0
+    },
+    {
+      "id": "food109",
+      "name": "Fresh Lime Juice",
+      "description": "Refreshing lime juice served chilled, available sweet or salted.",
+      "price": 60,
+      "category": "Desserts & Drinks",
+      "foodType": "Drink",
+      "dietaryTags": ["Veg", "Gluten-Free"],
+      "image": "../assets/images/fresh-lime-juice.jpg",
+      "rating": 1,
+      "reviewCount": 0
+    },
+    {
+      "id": "food110",
+      "name": "Classic Cheesecake",
+      "description": "Creamy cheesecake with a buttery biscuit base and a smooth finish.",
+      "price": 150,
+      "category": "Desserts & Drinks",
+      "foodType": "Dessert",
+      "dietaryTags": ["Veg"],
+      "image": "../assets/images/classic-cheesecake.jpg",
+      "rating": 1,
+      "reviewCount": 0
+    },
+    {
+      "id": "food111",
+      "name": "Mango Smoothie",
+      "description": "A chilled mango smoothie blended until creamy and refreshing.",
+      "price": 130,
+      "category": "Desserts & Drinks",
+      "foodType": "Drink",
+      "dietaryTags": ["Veg", "Gluten-Free"],
+      "image": "../assets/images/mango-smoothie.jpg",
+      "rating": 1,
+      "reviewCount": 0
+    }
+  ]
+
+}

@@ -17,7 +17,7 @@
             </div>
             <nav class="nav-items hidden md:flex gap-5 lg:gap-8 ">
                 <a href="index.html" id="current-tab">Home</a>
-                <a href="index.html">Menu</a>
+                <a href="./pages/menu.html">Menu</a>
                 <a href="./pages/about.html">About</a>
                 <a href="./pages/contact.html">Contact</a>
             </nav>
@@ -33,8 +33,8 @@
                     <h1 class="font-bold text-4xl sm:text-5xl md:text-6xl text-white md:tracking-tight md:leading-[1.02] pt-10">Good Food<br> Brings People <br><span class="text-[var(--primary-color)]" >Together</span></h1>
                     <p class="text-white text-base sm:text-lg mt-6 md:text-xl md:mt-9">Fresh ingredients. Great taste. Unforgettable moments.</p>
                     <div class="flex flex-wrap gap-3 sm:gap-4 items-center mt-7 md:mt-10">
-                        <button class="text-white px-3 py-1 rounded-2xl text-[0.75rem] md:px-6 md:py-3 sm:text-sm font-semibold bg-[var(--primary-color)] sm:rounded-full shadow-md hover:opacity-90 transition">Order Now</button>
-                        <button class="text-white px-3 py-1 rounded-2xl text-[0.75rem] sm:text-sm font-semibold bg-gray-700 md:px-6 md:py-3 sm:rounded-full border border-gray-500 hover:bg-gray-600 transition">Book a Table</button>
+                        <button class="text-white px-3 py-1 rounded-2xl text-[0.75rem] md:px-6 md:py-3 sm:text-sm font-semibold bg-[var(--primary-color)] sm:rounded-full shadow-md hover:opacity-90 transition cursor-pointer"><a href="./pages/menu.html">Order Now</a></button>
+                        <button class="text-white px-3 py-1 rounded-2xl text-[0.75rem] sm:text-sm font-semibold bg-gray-700 md:px-6 md:py-3 sm:rounded-full border border-gray-500 hover:bg-gray-600 transition cursor-pointer"><a href="./pages/about.html">Book a Table</a></button>
                     </div>
                 </div>
                 <div class="right-section w-full md:w-1/2 flex justify-center mt-8 md:justify-end mb-10">
@@ -51,7 +51,7 @@
                     <h2 class="text-2xl sm:text-3xl font-bold">Our Specialties</h2>
                     <div class="para-view-more flex justify-between items-center">
                         <p class="mt-1 font-normal text-[var(--text-color)] text-sm md:text-base">Discover our most popular dishes, made with love</p>
-                        <a href="index.html" class="text-[var(--primary-color)] text-sm md:text-base"><span class="desktop-only">View Menu </span><span class="arrow">→</span></a>
+                        <a href="./pages/menu.html" class="text-[var(--primary-color)] text-sm md:text-base"><span class="desktop-only">View Menu </span><span class="arrow">→</span></a>
                     </div>
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-5 md:gap-7">
@@ -111,9 +111,9 @@
         <section id="popular-menu-items" class="px-6 py-6">
             <div class="max-w-7xl mx-auto flex justify-between items-center py-10">
                 <h2 class="font-bold text-2xl sm:text-3xl">Popular Menu Items</h2>
-                <a href="index.html" class="text-[var(--primary-color)]"><span class="desktop-only">View All </span><span class="arrow">→</span></a>
+                <a href="./pages/menu.html" class="text-[var(--primary-color)]"><span class="desktop-only">View All </span><span class="arrow">→</span></a>
             </div>
-            <div class="popular-menu-card-container max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-7">
+            <div class="popular-menu-card-container max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
                 <div class="card">
                     <div class="image-container">
                         <img src="./assets/images/Biriyani.jpg" alt="Thalassery Dum Biryani">
@@ -121,15 +121,17 @@
                         <button class="favorite-btn">♡</button>
                     </div>
                     <div class="card-content">
-                        <div class="card-content-head">
-                            <h3>Thalassery Dum Biryani</h3>
-                            <span class="non-veg">Non-Veg</span>
-                        </div>
-                        <p class="description">Fragrant kaima rice cooked with tender spiced chicken, golden sultanas & cashews.</p>
-                        <div class="rating">
-                            <span class="text-orange-400 text-sm">★</span>
-                            <strong class="text-orange-400 text-sm">4.8</strong>
-                            <small>(124 reviews)</small>
+                        <div class="card-content-wrapper">
+                            <div class="card-content-head">
+                                <h3>Thalassery Dum Biryani</h3>
+                                <span class="non-veg">Non-Veg</span>
+                            </div>
+                            <p class="description">Fragrant kaima rice cooked with tender spiced chicken, golden sultanas & cashews.</p>
+                            <div class="rating">
+                                <span class="text-orange-400 text-sm">★</span>
+                                <strong class="text-orange-400 text-sm">4.8</strong>
+                                <small>(124 reviews)</small>
+                            </div>
                         </div>
                         <p class="font-semibold text-orange-600 text-lg">₹349</p>
                     </div>
@@ -142,15 +144,17 @@
                         <button class="favorite-btn">♡</button>
                     </div>
                     <div class="card-content">
-                        <div class="card-content-head">
-                            <h3>Kerala Beef Roast & Parotta</h3>
-                            <span class="non-veg">Non-Veg</span>
-                        </div>
-                        <p class="description">Slow-roasted spicy black beef cubes with toasted coconut chips & flaky layered Malabar parotta.</p>
-                        <div class="rating">
-                            <span class="text-orange-400 text-sm">★</span>
-                            <strong class="text-orange-400 text-sm">4.9</strong>
-                            <small>(185 reviews)</small>
+                        <div class="card-content-wrapper">
+                            <div class="card-content-head">
+                                <h3>Kerala Beef Roast & Parotta</h3>
+                                <span class="non-veg">Non-Veg</span>
+                            </div>
+                            <p class="description">Slow-roasted spicy black beef cubes with toasted coconut chips & flaky layered Malabar parotta.</p>
+                            <div class="rating">
+                                <span class="text-orange-400 text-sm">★</span>
+                                <strong class="text-orange-400 text-sm">4.9</strong>
+                                <small>(185 reviews)</small>
+                            </div>
                         </div>
                         <p class="font-semibold text-orange-600 text-lg">₹309</p>
                     </div>
@@ -163,15 +167,17 @@
                         <button class="favorite-btn">♡</button>
                     </div>
                     <div class="card-content">
-                        <div class="card-content-head">
-                            <h3>Meen Pollichathu & Parotta</h3>
-                            <span class="non-veg">Non-Veg</span>
-                        </div>
-                        <p class="description">Pearl spot fish marinated in spicy coastal masala wrapped in banana leaf with flaky Malabar parotta.</p>
-                        <div class="rating">
-                            <span class="text-orange-400 text-sm">★</span>
-                            <strong class="text-orange-400 text-sm">4.9</strong>
-                            <small>(98 reviews)</small>
+                        <div class="card-content-wrapper">
+                            <div class="card-content-head">
+                                <h3>Meen Pollichathu & Parotta</h3>
+                                <span class="non-veg">Non-Veg</span>
+                            </div>
+                            <p class="description">Pearl spot fish marinated in spicy coastal masala wrapped in banana leaf with flaky Malabar parotta.</p>
+                            <div class="rating">
+                                <span class="text-orange-400 text-sm">★</span>
+                                <strong class="text-orange-400 text-sm">4.9</strong>
+                                <small>(98 reviews)</small>
+                            </div>
                         </div>
                         <p class="font-semibold text-orange-600 text-lg">₹359</p>
                     </div>
@@ -183,15 +189,17 @@
                         <button class="favorite-btn">♡</button>
                     </div>
                     <div class="card-content">
-                        <div class="card-content-head">
-                            <h3>Penne Alfredo</h3>
-                            <span class="veg">Veg</span>
-                        </div>
-                        <p class="description">Creamy parmesan garlic sauce with sautéed mushrooms and fresh parsley.</p>
-                        <div class="rating">
-                            <span class="text-orange-400 text-sm">★</span>
-                            <strong class="text-orange-400 text-sm">4.6</strong>
-                            <small>(82 reviews)</small>
+                        <div class="card-content-wrapper">
+                            <div class="card-content-head">
+                                <h3>Penne Alfredo</h3>
+                                <span class="veg">Veg</span>
+                            </div>
+                            <p class="description">Creamy parmesan garlic sauce with sautéed mushrooms and fresh parsley.</p>
+                            <div class="rating">
+                                <span class="text-orange-400 text-sm">★</span>
+                                <strong class="text-orange-400 text-sm">4.6</strong>
+                                <small>(82 reviews)</small>
+                            </div>
                         </div>
                         <p class="font-semibold text-orange-600 text-lg">₹279</p>
                     </div>
@@ -262,7 +270,7 @@
             <div class="footer-nav flex flex-col gap-2">
                 <h4 class="font-medium text-lg pb-3">Quick Links</h4>
                 <a href="index.html">Home</a>
-                <a href="index.html">Menu</a>
+                <a href="./pages/menu.html">Menu</a>
                 <a href="./pages/about.html">About</a>
                 <a href="./pages/contact.html">Contact</a>
             </div>

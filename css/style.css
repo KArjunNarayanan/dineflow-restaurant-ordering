@@ -46,19 +46,22 @@
 
 
 .card{
+    display: flex;
+    flex-direction: column;
     width: 100%;
     border: 1px solid rgb(230, 227, 227);
     border-radius: 20px;
     overflow: hidden;
     transition: transform 0.25s ease;
-    box-shadow: 0 1px 2px var(--text-color);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 .card:hover{
     transform: translateY(-5px);
-    box-shadow: 0 3px 8px var(--text-color);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
 }
 .image-container{
     position: relative;
+    width: 100%;
     aspect-ratio: 4/3;
     overflow: hidden;
 }
@@ -66,7 +69,7 @@
     width: 100%; 
     height: 100%;
     object-fit: cover;
-    transition: all 0.4 ease;
+    transition: all 0.4s ease;
 }
 .card:hover .image-container img{
     transform: scale(1.04);
@@ -97,18 +100,69 @@
     cursor: pointer;
     transition: all 0.2 ease;
 }
+
+@media (min-width:320px) {
+    .favorite-btn{
+        width: 30px;
+        height: 30px;
+        font-size: 18px;
+    }
+    .favorite-btn-clicked{
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 30px;
+        height: 30px;
+        background-color: rgb(250, 3, 3);
+        border-radius: 50%;
+        font-size: 18px;
+        color: rgb(253, 245, 245);
+        cursor: pointer;
+        transition: all 0.2 ease;
+    }
+    
+}
+
+@media (min-width:768px) {
+    .favorite-btn{
+        width: 40px;
+        height: 40px;
+        font-size: 25px;
+    }
+}
+
+
 .favorite-btn:hover{
     transform: scale(1.08);
 }
+.favorite-btn-clicked{
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    background-color: rgb(250, 3, 3);
+    border-radius: 50%;
+    font-size: 25px;
+    color: rgb(253, 245, 245);
+    cursor: pointer;
+    transition: all 0.2 ease;
+}
 .card-content{
     padding: 15px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
+
+.card-content-wrapper{
+    flex: 1;
+}
+
 .card-content-head{
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-    gap: 12px;
+    align-items: flex-start;
 }
 .card-content-head h3{
     font-size: 16px;
@@ -120,27 +174,30 @@
     }
 }
 .non-veg{
-    color: var(--primary-color);
-    border: 1px solid rgb(255, 185, 138);
-    background-color: rgb(240, 234, 230);
-    font-size:10px;
+    color: rgb(214, 15, 15);
+    background-color: rgb(238, 229, 229);
+    font-size:9px;
     font-weight: 500;
     padding: 0.2rem;
     white-space: nowrap;
 }
 .veg{
     color: #1c9b4a;
-    border: 1px solid rgb(142, 213, 170);
     background-color:  rgb(230, 244, 234);
-    font-size:10px;
+    font-size:9px;
     font-weight: 500;
-    padding: 0.2rem;
+    padding: 0.2rem 0.4rem;
     white-space: nowrap;
 }
 .description{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
     color: var(--text-color);
-    margin-bottom: 12px;
     font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 9px;
 }
 .rating small{
     color: var(--text-color);
@@ -164,6 +221,104 @@
     background-color: rgb(246, 248, 250);
     color: var(--text-color);
 }
+
+/* menu.html */
+
+.card-menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid rgb(230, 227, 227);
+    border-radius: 20px;
+    overflow: hidden;
+    background: white;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+.card-menu:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+}
+.card-image{
+    position: relative;
+    width: 100%;
+    height: 12rem;
+    overflow: hidden;
+}
+.card-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.menu-card-content{
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.menu-card-content h3{
+    font-size: 16px;
+    font-weight: 700; 
+    margin-bottom: 4px;  
+}
+@media (min-width: 1024px) {
+    .menu-card-content h3{
+        font-size: 18px;
+    }
+}
+.menu-rating-row{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 12px;
+}
+
+.menu-rating{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--primary-color);
+    font-size: 13px;
+}
+.reviews {
+    color: var(--text-color);
+    font-size: 12px;
+}
+.menu-description{
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 9px;
+    color: var(--text-color);
+}
+.card-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+}
+.price {
+    font-size: 17px;
+    font-weight:700;
+    color: #111;
+}
+.add-cart {
+    border: none;
+    background: var(--primary-color);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.add-cart:hover {
+    opacity: 0.9;
+}
+
+
+
+
+
 
 
 

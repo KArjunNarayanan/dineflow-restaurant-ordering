@@ -1,0 +1,1 @@
+let foodDetailsContainer = document.getElementById("food-details-container");
