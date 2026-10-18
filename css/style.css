@@ -315,6 +315,19 @@
     opacity: 0.9;
 }
 
+/* contact.html */
+
+.error{
+    font-size: small;
+    color: red;
+}
+#status,.success{
+    font-size: small;
+    color: green;
+}
+
+
+
 
 
 
