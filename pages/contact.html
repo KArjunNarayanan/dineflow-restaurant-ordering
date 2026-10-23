@@ -10,6 +10,7 @@
         src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=shopping_cart,account_circle" />
 </head>
 <body class="min-h-screen flex flex-col">
     <header class="border-b-1 border-b-[var(--text-grey)] sticky top-0 z-50 bg-slate-50/96 px-3">
@@ -17,14 +18,26 @@
             <div class="logo">
                 <a href="../index.html" class="font-bold text-2xl md:text-3xl">Dine<span class="text-[var(--primary-color)]">Flow</span></a>
             </div>
-            <nav class="nav-items hidden md:flex gap-5 md:gap-8 ">
+            <nav id="navMenu" class="nav-items hidden md:flex flex-col md:flex-row gap-5 lg:gap-8 absolute md:static top-20 left-0 w-full md:w-auto bg-slate-50/96 md:bg-transparent text-center py-5">
                 <a href="../index.html">Home</a>
                 <a href="./menu.html">Menu</a>
                 <a href="./about.html">About</a>
                 <a href="./contact.html" id="current-tab">Contact</a>
             </nav>
-            <div class="profile-user size-10 rounded-full bg-[var(--primary-color)] flex justify-center items-center border-3 border-[var(--secondary-color)] hover:opacity-86 hover:cursor-pointer">
-                <a href="./dashboard.html"><p class="font-semibold text-white">AR</p></a>
+            <div class="flex gap-4 items-center justify-center">
+                <div class="text-gray-500 size-10 flex items-center justify-center hover:bg-orange-100 rounded-full transition duration-150 relative">
+                    <div id="cartCountBadge" class="hidden absolute -top-1 right-0  size-4 flex justify-center items-center bg-orange-600 text-xs rounded-full p-2 text-white font-semibold">
+                        <span id="cart-items-count"></span>
+                    </div>
+                    <span class="material-symbols-outlined "><a href="./cart.html">shopping_cart</a></span>
+                </div>
+                <a href="./auth.html" id="loginBtnHome" class="inline-flex items-center justify-center text-orange-500 hover:text-orange-700 transition duration-200"><span class="material-symbols-outlined !text-4xl">account_circle</span></a>
+                <div class="profile-user size-10 rounded-full bg-[var(--primary-color)] flex justify-center items-center border-3 border-yellow-500 hover:opacity-86 hover:cursor-pointer hidden">
+                    <a href="./dashboard.html"><p class="font-semibold text-white">AR</p></a>
+                </div>
+                <button id="menuBtn" class="md:hidden text-2xl">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
             </div>
         </div>
     </header>
@@ -108,5 +121,6 @@
         </div>
     </footer>
     <script src="../js/contact.js"></script>
+    <script src="../js/index.js"></script>
 </body>
 </html>

@@ -149,9 +149,23 @@ menuSearchInput.addEventListener("input",()=>{
     applyFilters();
 });
 
+
+function getFavorites() {
+    return JSON.parse(localStorage.getItem("favorites")) || [];
+}
+
+function saveFavorites(favorites) {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+}
+
 function updateMenuContainer(food){
     const card = document.createElement("div");
     card.classList.add("card-menu");
+
+    card.addEventListener("click",()=>{
+        let selectedFoodId = localStorage.setItem("selectedFoodId",food.id);
+        window.location.href = "./food-details.html";
+    });
 
     const imageContainer = document.createElement("div");
     imageContainer.classList.add("card-image");
@@ -167,8 +181,43 @@ function updateMenuContainer(food){
     favoriteButton.textContent = "♡";
     imageContainer.appendChild(favoriteButton);
 
-    favoriteButton.addEventListener("click",()=>{
+    let favorites = getFavorites();
+
+    let alreadyAdded = false;
+    for(let item of favorites){
+        if(item.id === food.id){
+            alreadyAdded = true;
+            break;
+        }
+    }
+    if(alreadyAdded){
+        favoriteButton.textContent = "♥";
         favoriteButton.classList.toggle("favorite-btn-clicked");
+    }else{
+        favoriteButton.textContent = "♡";
+    }
+
+    favoriteButton.addEventListener("click",(e)=>{
+        e.stopPropagation();
+        favoriteButton.classList.toggle("favorite-btn-clicked");
+        favorites = getFavorites();
+
+        alreadyAdded = false;
+        for(let item of favorites){
+            if(item.id === food.id){
+                alreadyAdded = true;
+                break;
+            }
+        }
+
+        if(alreadyAdded){
+            favorites = favorites.filter((item)=>item.id !== food.id);
+            favoriteButton.textContent = "♡";
+        }else{
+            favorites.push(food);
+            favoriteButton.textContent = "♥";
+        }
+        saveFavorites(favorites);
     });
 
     const cardContent = document.createElement("div");
@@ -219,6 +268,30 @@ function updateMenuContainer(food){
     const cartButton = document.createElement("button");
     cartButton.classList.add("add-cart");
     cartButton.textContent = "Add to Cart";
+    cartButton.addEventListener("click",(e)=>{
+        e.stopPropagation();    
+        let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+        let alreadyAdded = cartItems.find((item)=>{
+            return item.id === food.id
+        });
+        if(alreadyAdded){
+            alert("Already in your cart");
+            return;
+        }
+        cartItems.push({
+            id: food.id,
+            name: food.name,
+            image: food.image,
+            rating: food.rating,
+            price: food.price,
+            quantity: 1,
+            type: food.dietaryTags[0].toLowerCase()
+        });
+        localStorage.setItem("cart", JSON.stringify(cartItems));
+        updateNavbarCartCount();
+        alert("Item added to cart!");
+    });
+
     cardBottom.appendChild(price);
     cardBottom.appendChild(cartButton);
 

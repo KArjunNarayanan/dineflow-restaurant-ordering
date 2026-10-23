@@ -6,6 +6,7 @@
     <title>DineFlow | Login & Signup</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_circle" />
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body class="min-h-screen flex flex-col">
@@ -20,8 +21,8 @@
                 <a href="./about.html">About</a>
                 <a href="./contact.html">Contact</a>
             </nav>
-            <div class="border-[var(--primary-color)]">
-                <button class="border-[var(--primary-color)]-500 flex gap-2 items-center border rounded-2xl text-sm  md:rounded-3xl px-3 py-1 md:py-2 md:px-5 text-[var(--primary-color)] md:font-medium hover:text-white hover:bg-[var(--primary-color)] transition duration-300 hover:cursor-pointer"><i class="fa-solid fa-user"></i> Account</button>
+            <div>
+                <a href="./auth.html" id="loginBtnHome" class="inline-flex items-center justify-center text-orange-500 hover:text-orange-700 transition duration-200"><span class="material-symbols-outlined !text-4xl">account_circle</span></a>
             </div>
         </div>
     </header>
@@ -42,15 +43,18 @@
                     <form id="loginForm">
                         <div class="mb-6 flex flex-col">
                             <label for="email" class="text-[0.8125rem] font-medium text-gray-600 mb-2">EMAIL ADDRESS</label>
-                            <input type="text" id="email" class="p-2 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-1 ring-[var(--primary-color)]" placeholder="Enter your email">
+                            <input type="text" id="loginEmail" class="p-2 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-1 ring-[var(--primary-color)]" placeholder="Enter your email">
+                            <p id="loginEmailError" class="error"></p>
                         </div>
                         <div class="mb-6 flex flex-col">
-                            <label for="email" class="text-[0.8125rem] font-medium text-gray-600 mb-2">PASSWORD</label>
-                            <input type="password" id="password" class="p-2 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-1 ring-[var(--primary-color)]" placeholder="Enter your password">
+                            <label for="password" class="text-[0.8125rem] font-medium text-gray-600 mb-2">PASSWORD</label>
+                            <input type="password" id="loginPassword" class="p-2 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-1 ring-[var(--primary-color)]" placeholder="Enter your password">
+                            <p id="loginPasswordError" class="error"></p>
                         </div>
                         <button id="loginFormBtn" class="text-white w-full bg-[var(--primary-color)] rounded-lg py-2 shadow-md shadow-[var(--primary-color)] mb-6 hover:cursor-pointer">Login</button>
                     </form>
                     <p class="text-[13px] text-center text-[var(--text-color)]">Don't have an account? <a onclick="signupClick()" class="text-[var(--primary-color)] font-medium hover:cursor-pointer">Sign Up</a></p>
+                    <p id="loginMessage"></p>
                 </div>
                 <div id="signupToggle">
                    <div class="text-center pb-5">
@@ -60,23 +64,28 @@
                     <form id="signupForm">
                         <div class="mb-6 flex flex-col">
                             <label for="name" class="text-[0.8125rem] font-medium text-gray-600 mb-2">FULL NAME</label>
-                            <input type="text" id="name" class="p-2 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-1 ring-[var(--primary-color)]" placeholder="Enter your name">
+                            <input type="text" id="signupName" class="p-2 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-1 ring-[var(--primary-color)]" placeholder="Enter your name">
+                            <p id="signupNameError" class="error"></p>
                         </div>
                         <div class="mb-6 flex flex-col">
                             <label for="email" class="text-[0.8125rem] font-medium text-gray-600 mb-2">EMAIL ADDRESS</label>
-                            <input type="text" id="email" class="p-2 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-1 ring-[var(--primary-color)]" placeholder="Enter your email">
+                            <input type="text" id="signupEmail" class="p-2 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-1 ring-[var(--primary-color)]" placeholder="Enter your email">
+                            <p id="signupEmailError" class="error"></p>
                         </div>
                         <div class="mb-6 flex flex-col">
                             <label for="password" class="text-[0.8125rem] font-medium text-gray-600 mb-2">PASSWORD</label>
-                            <input type="password" id="password" class="p-2 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-1 ring-[var(--primary-color)]" placeholder="Create a password">
+                            <input type="password" id="signupPassword" class="p-2 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-1 ring-[var(--primary-color)]" placeholder="Create a password">
+                            <p id="signupPasswordError" class="error"></p>
                         </div>
                         <div class="mb-6 flex flex-col">
                             <label for="confirmPassword" class="text-[0.8125rem] font-medium text-gray-600 mb-2">CONFIRM PASSWORD</label>
                             <input type="password" id="confirmPassword" class="p-2 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-1 ring-[var(--primary-color)]" placeholder="Confirm your password">
+                            <p id="confirmPasswordError" class="error"></p>
                         </div>
                         <button id="signupFormBtn" class="text-white w-full bg-[var(--primary-color)] rounded-lg py-2 shadow-md shadow-[var(--primary-color)] mb-6 hover:cursor-pointer">Sign Up</button>
                     </form>
                     <p class="text-[13px] text-center text-[var(--text-color)]">Already have an account? <a onclick="loginClick()" class="text-[var(--primary-color)] font-medium hover:cursor-pointer">Login</a></p> 
+                    <p id="signupMessage"></p>
                 </div>
             </div>
         </section>

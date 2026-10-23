@@ -1,26 +1,50 @@
 let cartContainer = document.getElementById("cart-container");
+let checkoutBtn = document.getElementById("checkoutBtn");
+let cartCount = document.getElementById("cartCount");
+let cartCountBadge = document.getElementById("cartCountBadge");
+let cartItemsCount = document.getElementById("cart-items-count");
 
-let cartItems = [
-        {
-            id: 1,
-            name: "Margherita Pizza",
-            image: "../assets/images/Pizzas.jpg",
-            rating: 5.0,
-            price: 299,
-            quantity: 1,
-            type: "veg"
-        },
-        {
-            id: 2,
-            name: "Classic Burger",
-            image: "../assets/images/Burgers.jpg",
-            rating: 5.0,
-            price: 249,
-            quantity: 1,
-            type: "non-veg"
-        }
-    ]
+let orderSummary = document.getElementById("order-summary");
+let cartSubtotal = document.getElementById("cart-subtotal");
+let totalPriceCart = document.getElementById("cart-total");
 
+
+function getCartItems(){
+    return JSON.parse(localStorage.getItem("cart")) || [];
+}
+function saveCartItems(cartItems){
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+}
+
+let cartItems = getCartItems();
+
+function updateCartCount() {
+    let totalCount = 0;
+    let badgeCount = 0;
+    cartItems.forEach((item) => {
+        totalCount += Number(item.quantity);
+        badgeCount++;
+    });
+    cartCount.textContent = String(totalCount);
+    cartItemsCount.textContent = String(badgeCount);
+
+    if (totalCount > 0) {
+        cartCountBadge.classList.remove("hidden");
+        cartItemsCount.textContent = String(badgeCount);
+    } else {
+        cartCountBadge.classList.add("hidden");
+    }
+}
+function updateCartTotals() {
+    let subtotal = 0;
+    cartItems.forEach(function(item) {
+        subtotal += Number(item.price) * Number(item.quantity);
+    });
+    let deliveryCharge = 40;
+    let total = subtotal + deliveryCharge;
+    cartSubtotal.textContent = `₹${subtotal}`;
+    totalPriceCart.textContent = `₹${total}`;
+}
 function createCartCard(item){
     const cartCard = document.createElement("div");
     cartCard.className = "flex flex-col md:flex-row md:items-center gap-5 md:gap-4  p-4 border-b border-slate-100 justify-between bg-white";
@@ -61,7 +85,7 @@ function createCartCard(item){
     star.className = "text-amber-500";
 
     const ratingValue = document.createElement("span");
-    ratingValue.textContent = item.rating.toFixed(1);
+    ratingValue.textContent = item.rating;
     rating.append(star, ratingValue);
 
     const price = document.createElement("p");
@@ -81,16 +105,32 @@ function createCartCard(item){
     const minusButton = document.createElement("button");
     minusButton.textContent = "−";
     minusButton.className ="text-gray-500 hover:text-orange-600";
-
-    const quantity = document.createElement("span");
-    quantity.textContent = item.quantity;
-    quantity.className ="font-medium text-sm min-w-3 text-center";
+   
+    const quantityText = document.createElement("span");
+    quantityText.textContent = String(item.quantity);
+    quantityText.className ="font-medium text-sm min-w-3 text-center";
 
     const plusButton = document.createElement("button");
     plusButton.textContent = "+";
     plusButton.className ="text-gray-500 hover:text-orange-600";
+    plusButton.addEventListener("click",()=>{
+        item.quantity++;
+        quantityText.textContent = String(item.quantity);
+        saveCartItems(cartItems);
+        refreshCart();
+    });
+    minusButton.addEventListener("click",()=>{
+        if(item.quantity > 1){
+            item.quantity--;
+            quantityText.textContent=String(item.quantity);
+            saveCartItems(cartItems);
+            refreshCart();
+        }else{
+            return;
+        }
+    });
 
-    quantityBox.append(minusButton,quantity,plusButton);
+    quantityBox.append(minusButton,quantityText,plusButton);
 
     const itemTotal = document.createElement("p");
     itemTotal.textContent = `₹${item.price * item.quantity}`;
@@ -99,11 +139,37 @@ function createCartCard(item){
     const deleteButton = document.createElement("button");
     deleteButton.innerHTML ='<i class="fa-regular fa-trash-can"></i>';
     deleteButton.className ="text-rose-400 hover:text-rose-600 size-8 shrink-0 transition duration-200";
+    deleteButton.addEventListener("click",()=>{
+        cartItems = cartItems.filter((cartItem)=>{
+            return cartItem.id !== item.id;
+        });
+        saveCartItems(cartItems);
+        refreshCart();
+    });
 
     rightDiv.append(quantityBox,itemTotal,deleteButton);
     cartCard.append(leftDiv, rightDiv);
     return cartCard;
 }
-cartItems.forEach((item)=>{
-    cartContainer.appendChild(createCartCard(item));
+
+function refreshCart(){
+    cartContainer.textContent="";
+    if(cartItems.length === 0){
+        let para = document.createElement("p");
+        para.textContent = "No items in your cart";
+        para.className = "text-gray-500 text-center py-12 text-lg";
+        cartContainer.appendChild(para);
+        orderSummary.classList.add("hidden");
+    }else{
+        orderSummary.classList.remove("hidden");
+        cartItems.forEach((item)=>{
+            cartContainer.appendChild(createCartCard(item));
+        });
+        updateCartTotals();
+    }
+    updateCartCount();
+}
+refreshCart();
+checkoutBtn.addEventListener("click",()=>{
+    window.location.href = "./checkout.html";
 });

@@ -1,3 +1,4 @@
+
 const ordersContainer = document.getElementById("order-container");
 
 const order = {
@@ -150,18 +151,7 @@ function createOrderPreparing(order) {
 ordersContainer.appendChild(createOrderPreparing(order));
 
 const bookingsContainer = document.getElementById("bookings-container");
-const booking = {
-            id: "BK123",
-            status: "Confirmed",
-            guests: "2 Guests",
-            seating: "Indoor Seating (Main Dining Hall)",
-            table: "Table #08",
-            date: "25 Aug 2025 • 7:30 PM (Evening Slot)"
-};
-
-
-
-
+const bookingCount = document.querySelectorAll(".bookingCount");
 function createBooking(booking){
     const bookingDiv = document.createElement("div");
     bookingDiv.className ="py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all duration-300";
@@ -218,12 +208,21 @@ function createBooking(booking){
     dotSpan2.className = "mx-2";
 
     info.append(guestNumber,dotSpan1,guestSeating,dotSpan2,guestTable);
+
+    const specialReq = document.createElement("p");
+    specialReq.textContent = `"${booking.specialRequest}"`;
+    specialReq.className = "text-xs text-orange-600 mt-1 font-medium";
     
     const date = document.createElement("time");
     date.className ="block text-xs text-gray-400 mt-1";
-    date.textContent = booking.date;
+    date.textContent = `${booking.date} • ${booking.time} `;
 
-    detailsDiv.append(titleDiv, info, date);
+    detailsDiv.append(titleDiv, info);
+
+    if(booking.specialRequest && booking.specialRequest.trim() !== ""){
+        detailsDiv.appendChild(specialReq);
+    }
+    detailsDiv.appendChild(date);
     leftDiv.append(iconDiv,detailsDiv);
 
     const rightDiv = document.createElement("div");
@@ -232,14 +231,64 @@ function createBooking(booking){
 
     const cancelButton = document.createElement("button");
     cancelButton.type = "button";
-    cancelButton.className ="px-4 py-2 rounded-lg border border-red-200 text-sm font-semibold text-red-600 hover:bg-red-50 flex items-center gap-2 transition-all";
+    cancelButton.className ="px-4 py-2 rounded-lg border border-red-200 text-sm font-semibold text-red-600 hover:bg-red-50 flex items-center gap-2 cursor-pointer transition-all";
     cancelButton.textContent = "Cancel Booking";
+
+    cancelButton.addEventListener("click",async (e)=>{
+        e.preventDefault();
+        const confirmDelete = confirm("Are you sure you want to cancel this booking?");
+        if(!confirmDelete){return}
+        try{
+            const response = await fetch(`http://localhost:3000/bookings/${booking.id}`,{
+                method: "DELETE"
+            })
+            if (!response.ok) {
+                throw new Error("Failed to fetch bookings");
+            }
+            alert("Booking cancelled successfully!");
+            await fetchBookings();
+
+        }catch(error){
+            console.error("Error deleting booking:", error);
+            alert("Unable to cancel booking. Please try again.");
+        }
+    });
+    
     rightDiv.append(cancelButton);
     bookingDiv.append(leftDiv, rightDiv);
     
     return bookingDiv;
 }
-bookingsContainer.appendChild(createBooking(booking));
+
+async function fetchBookings(){
+    try{
+        const response = await fetch("http://localhost:3000/bookings")
+        if (!response.ok) {
+            throw new Error("Failed to fetch bookings");
+        }
+        const bookings = await response.json();
+        const totalBookings = bookings.length;
+        bookingCount.forEach((count) => {
+            count.textContent = totalBookings;
+        });
+        bookingsContainer.textContent = "";
+        if(bookings.length === 0){
+            const para = document.createElement("p");
+            para.textContent = "No record found!";
+            para.classList = "text-[var(--primary-color)] font-semibold";
+            bookingsContainer.appendChild(para);
+        }
+        bookings.forEach((booking)=>{
+            bookingsContainer.appendChild(createBooking(booking));
+        });
+
+    }catch(error) {
+        console.error("Error fetching bookings:", error);
+        bookingsContainer.textContent ="Unable to load bookings. Please try again.";
+        bookingsContainer.classList = "text-red-600 font-semibold";
+    }
+}
+fetchBookings();
 
 let dashboardTab = document.getElementById("dashboard-tab");
 let orderTab = document.getElementById("order-tab");
@@ -298,30 +347,8 @@ function favoriteClick() {
 
 
 const favoriteContainer = document.getElementById("favorite-container");
-
-const favorites =[
-                    {
-                        name: "Kerala Beef Roast & Parotta",
-                        image: "../assets/images/beef-roast-parrota.jpg",
-                        category: "Non-Veg",
-                        rating: "4.8",
-                        reviews: "124 reviews",
-                        description:
-                            "Fragrant kaima rice cooked with tender spiced chicken, golden sultanas & cashews.",
-                        price: "₹349"
-                    },
-                    {
-                        name: "Thalassery Dum Biriyani",
-                        image: "../assets/images/Biriyani.jpg",
-                        category: "Non-Veg",
-                        rating: "4.8",
-                        reviews: "124 reviews",
-                        description:
-                            "Fragrant kaima rice cooked with tender spiced chicken, golden sultanas & cashews.",
-                        price: "₹349"
-                    }
-] 
-
+const favoriteCount = document.querySelectorAll(".favCount");
+favoriteContainer.textContent = "";
 function createFavorites(favorites){
     favorites.forEach((item)=>{
         const outerDiv = document.createElement("div");
@@ -352,6 +379,13 @@ function createFavorites(favorites){
         heartContainer.classList = "p-1 rounded-xl hover:bg-red-100 flex justify-center items-center transition duration-150";
         const heartIcon = document.createElement("span");
         heartIcon.className = "fa-solid fa-heart text-red-500 text-sm cursor-pointer";
+
+        heartIcon.addEventListener("click",()=>{
+            favorites = JSON.parse(localStorage.getItem("favorites"));
+            favorites = favorites.filter((food) => food.id !== item.id);
+            localStorage.setItem("favorites",JSON.stringify(favorites));
+            displayFavorites();
+        });
         heartContainer.appendChild(heartIcon);
 
         rowDiv.append(cardName,heartContainer);
@@ -366,18 +400,55 @@ function createFavorites(favorites){
         cardBottom.className = "flex justify-between items-center";
 
         const price = document.createElement("span");
-        price.textContent = item.price;
+        price.textContent = `₹${item.price}`;
         price.className = "font-bold";
         const addButton = document.createElement("button");
         addButton.textContent = "Add";
         addButton.className = "px-3 py-1 text-xs bg-[var(--primary-color)] text-white font-semibold rounded-md hover:opacity-90 cursor-pointer";
+        addButton.addEventListener("click",()=>{
+            let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+            let exists = cartItems.some((cartItem)=>{
+                return cartItem.id === item.id;
+            });
+            if(exists){
+                alert("Already in your cart");
+                return;
+            }else{
+                cartItems.push({
+                    id: item.id,
+                    image: item.image,
+                    name: item.name,
+                    price: item.price,
+                    quantity: 1,
+                    rating: item.rating,
+                    type: item.dietaryTags[0]
+                });
+                localStorage.setItem("cart",JSON.stringify(cartItems));
+                alert("Added to cart");
+                updateNavbarCartCount();
+            }
+        });
 
         cardBottom.append(price,addButton);
         rightDiv.append(cardContent,cardBottom);
 
         outerDiv.append(leftDiv,rightDiv);
         favoriteContainer.appendChild(outerDiv);
-        
     });
 }
-createFavorites(favorites);
+
+function displayFavorites(){
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    let currentFavoriteCount = favorites.length;
+    favoriteCount.forEach((fav)=>{
+        fav.textContent = currentFavoriteCount;
+    })
+    favoriteContainer.textContent = ""
+    if(favorites.length === 0){
+        favoriteContainer.textContent = "No favorites added yet";
+        favoriteContainer.classList = "text-[var(--primary-color)] font-semibold";
+        return;
+    }
+    createFavorites(favorites); 
+}
+displayFavorites();

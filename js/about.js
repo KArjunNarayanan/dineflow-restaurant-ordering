@@ -41,7 +41,7 @@ form.addEventListener("submit",async (e)=>{
         return;
     }
 
-    let availableTables = ["Table #01","Table #02","Table #03","Table #04","Table #05","Table #06","Table #07","Table #08"]
+    let availableTables = ["Table #01","Table #02","Table #03","Table #04","Table #05","Table #06","Table #07","Table #08","Table #09","Table #10","Table #11","Table #12","Table #13","Table #14","Table #15"]
 
     let randomIndex = Math.floor(Math.random() * availableTables.length);
     let allocatedTable = availableTables[randomIndex];
@@ -68,23 +68,9 @@ form.addEventListener("submit",async (e)=>{
             throw new Error("Failed to book the table");
         }
         alert("Saved Booking")
+        form.reset();
     }catch(error) {
         console.log("Booking error: ",error);
         alert("Unable to book the table. Please try again!");
     }
-    
-
-
-
-
-    
-
-    
-
-
-
-
-
-
-
 });
