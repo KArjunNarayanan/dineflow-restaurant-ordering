@@ -39,7 +39,7 @@
     </header>
     <main class="bg-slate-100 flex-1 py-6 md:py-10 px-3 md:px-5">
         <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col lg:flex-row lg:items-start lg:justify-center gap-4 md:gap-8">
+            <form id="deliveryDetailsForm" class="flex flex-col lg:flex-row lg:items-start lg:justify-center gap-4 md:gap-8">
                 <div class="bg-white px-6 py-7 md:p-8 rounded-xl border border-gray-100 shadow-sm">
                     <div class="border-b border-gray-200 flex justify-between items-center gap-5 md:gap-8 space-y-6">
                         <div>
@@ -53,17 +53,20 @@
                     </div>
                     <div class="flex flex-col md:flex-row gap-3 mt-5">
                         <div class="mb-3 flex flex-col w-full">
-                            <label for="name" class="text-[0.8125rem] font-medium text-gray-600 mb-2">Full Name</label>
+                            <label fzor="name" class="text-[0.8125rem] font-medium text-gray-600 mb-2">Full Name</label>
                             <input type="text" id="name" class="p-2 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-1 ring-[var(--primary-color)]" placeholder="Your name">
+                            <p id="nameError" class="error"></p>
                         </div>
                         <div class="mb-3 flex flex-col w-full">
                             <label for="phone" class="text-[0.8125rem] font-medium text-gray-600 mb-2">Phone Number</label>
-                            <input type="text" id="phone" class="p-2 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-1 ring-[var(--primary-color)]" placeholder="+91 9876543210">
+                            <input type="text" id="phone" class="p-2 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-1 ring-[var(--primary-color)]" placeholder="9876543210">
+                            <p id="phoneError" class="error"></p>
                         </div>
                     </div>
                     <div class="mb-3 flex flex-col w-full">
                         <label for="deliveryAddress" class="text-[0.8125rem] font-medium text-gray-600 mb-2">Delivery Address</label>
                         <input type="text" id="deliveryAddress" class="p-2 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-1 ring-[var(--primary-color)]" placeholder="House/Flat, Street, Area">
+                        <p id="addressError" class="error"></p>
                     </div>
                     <div class="flex flex-col mb-3">
                         <label for="special-instructions" class="mb-2 text-[0.8125rem] font-medium text-gray-600">Special Instructions <span class="text-xs font-normal text-gray-400">(Optional)</span></label>
@@ -75,41 +78,20 @@
                     <div class="border-b border-gray-200 flex justify-between items-center gap-5 space-y-6">
                         <div class="flex-1">
                             <h3 class="text-xl font-bold">Order Summary</h3>
-                            <p class="text-xs text-gray-500 text-wrap mt-1"><span>3 </span>items</p>
+                            <p class="text-xs text-gray-500 text-wrap mt-1"><span id="checkoutItems">0</span> items</p>
                         </div>
                         <span class="bg-orange-50 rounded-xl p-1 text-xs px-3 border border-orange-200">
                             <span class="text-orange-600 font-semibold">Delivery</span>
                         </span>
                     </div>
 
-                    <div class="border-b border-dashed border-gray-200 space-y-2 pb-4">
-                        <div class="flex justify-between items-center gap-3">
-                            <div class="flex items-center gap-3">
-                                <span class="text-xs size-6 rounded-full bg-gray-100 flex items-center justify-center">1</span>
-                                <p class="text-sm">Margherita Pizza</p>
-                            </div>
-                            <span class="text-sm font-medium">₹867</span>
-                        </div>
-                        <div class="flex justify-between items-center gap-3">
-                            <div class="flex items-center gap-3">
-                                <span class="text-xs size-6 rounded-full bg-gray-100 flex items-center justify-center">1</span>
-                                <p class="text-sm">Margherita Pizza</p>
-                            </div>
-                            <span class="text-sm font-medium">₹867</span>
-                        </div>
-                        <div class="flex justify-between items-center gap-3">
-                            <div class="flex items-center gap-3">
-                                <span class="text-xs size-6 rounded-full bg-gray-100 flex items-center justify-center">1</span>
-                                <p class="text-sm">Margherita Pizza</p>
-                            </div>
-                            <span class="text-sm font-medium">₹867</span>
-                        </div>
+                    <div id="cartListCheckout" class="border-b border-dashed border-gray-200 space-y-2 pb-4">
                     </div>
 
                     <div class="space-y-3 border-b border-gray-100 text-sm  md:text-base pb-4">
                         <div class="flex justify-between items-center gap-3">
                             <span class="text-gray-600 text-sm">Subtotal</span>
-                            <span class="font-medium text-gray-900 text-sm">₹827</span>
+                            <span id="subTotal" class="font-medium text-gray-900 text-sm"></span>
                         </div>
                         <div class="flex justify-between items-center gap-3">
                             <span class="text-gray-600 text-sm">Delivery Fee</span>
@@ -126,14 +108,14 @@
                             <p class="text-sm text-gray-500 font-medium">Total Amount</p>
                             <p class="text-xs text-gray-400 mt-1">Inclusive of all taxes</p>
                         </div>
-                        <span class="text-2xl md:text-3xl font-bold text-orange-600">₹867</span>
+                        <span class="priceCheckout text-2xl md:text-3xl font-bold text-orange-600"></span>
                     </div>
 
                      <div class="mt-4">
-                        <button type="button" class="w-full text-sm flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold p-3 rounded-2xl transition-all duration-200 cursor-pointer">
+                        <button type="submit" class="w-full text-sm flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold p-3 rounded-2xl transition-all duration-200 cursor-pointer">
                             <span >Place Order</span>
                             <span class="text-orange-200">•</span>
-                            <span>₹867</span>
+                            <span class="priceCheckout"></span>
                             <i class="fa-solid fa-arrow-right ml-1"></i>
                         </button>
                     </div>
@@ -143,9 +125,43 @@
                     </div>
                 </div>
 
-            </div>
+            </form>
         </div>
     </main>
+    <dialog id="orderConfirmationDialog" class="outline-none rounded-xl p-6 backdrop:bg-black/50 backdrop-blur-sm fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-sm w-[80%]">
+        <div class="flex flex-col items-center text-center">
+            <div class="size-13 bg-green-100 rounded-full flex justify-center items-center">
+                <i class="fa-solid fa-check text-green-500 text-xl"></i>
+            </div>
+            <div class="space-y-3 my-4">
+                <h1 class="text-green-500 font-semibold">Order Placed Successfully!</h1>
+                <p class="font-medium">Thank you for ordering with DineFlow!</p>
+                <p class="text-gray-700 text-sm">Your order has been confirmed. We're preparing your delicious meal with care.</p>
+            </div>
+            <div class="flex flex-col gap-2 border-y border-gray-300 py-3 w-full my-1">
+                <h4 class="text-gray-700 font-medium text-sm">YOUR ORDER ID</h4>
+                <span class="text-orange-500 font-medium">#DF-20261024-001</span>
+                <span class="text-xs text-gray-600">Please keep this ID for future reference.</span>
+            </div>
+        </div>
+        <div class="flex flex-col gap-2 border-b border-gray-300 py-3">
+            <div class="flex justify-between items-center">
+                <span class="text-gray-900 text-sm">Subtotal</span>
+                <span id="receiptSubTotal" class="font-medium text-gray-600 text-sm"></span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-gray-900 text-sm">Delivery Fee</span>
+                <span class="font-medium text-gray-600 text-sm">₹40</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-gray-900">Total Amount</span>
+                <span class="priceCheckout font-semibold text-gray-900 text-sm"></span>
+            </div>
+        </div>
+        <button id="exploreMenuBtn" class="bg-orange-500 w-full py-2 text-center rounded-md outline-none text-white font-medium mt-5 cursor-pointer hover:bg-orange-600 transition duration-200">Explore Menu</button>
+
+    </dialog>
+    
     <footer class="bg-[var(--secondary-color)] text-white ">
         <div class="max-w-7xl mx-auto px-3 py-8 grid grid-cols-1 md:grid-cols-3 gap-7">
             <div class="footer-logo">
@@ -193,5 +209,6 @@
         </div>
     </footer>
     <script src="../js/index.js"></script>
+    <script src="../js/checkout.js"></script>
 </body>
 </html>

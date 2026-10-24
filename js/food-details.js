@@ -158,11 +158,13 @@ function displayFoodDetails(){
     const addToCartBtn = createElement("button","w-full flex items-center justify-center py-3 px-4 bg-[var(--primary-color)] rounded-xl text-white font-semibold text-sm","Add to Cart");
     addToCartBtn.addEventListener("click",()=>{
         addToCart();
+        updateNavbarCartCount();
     });
     actions.append(favouriteBtn, addToCartBtn);
     details.appendChild(actions);
     mainCard.appendChild(details);
     foodDetailsContainer.appendChild(mainCard);
+    
 }
 
 function addToCart(){
