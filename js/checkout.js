@@ -7,17 +7,18 @@ let priceCheckout = document.querySelectorAll(".priceCheckout");
 let orderConfirmationDialog = document.getElementById("orderConfirmationDialog");
 let exploreMenuBtn = document.getElementById("exploreMenuBtn");
 
-function getCartItems(){
-    return JSON.parse(localStorage.getItem("cart")) || [];
-}
+updateNavbarCartCount();
 
+function getLoggedInUser(){
+    return JSON.parse(localStorage.getItem("loggedInUser")) || [];
+}
 function createElement(tag,className="",text=""){
     const element = document.createElement(tag);
     element.textContent = text;
     element.className = className;
     return element;
 }
-
+let totalAmt;
 function calculateTotal(){
     const cartItems = getCartItems();
     let totalCount = 0;
@@ -26,17 +27,23 @@ function calculateTotal(){
         subTotal += Number(item.quantity) * Number(item.price);
         totalCount ++;
     });
+    totalAmt = subTotal + 40;
     checkoutItems.textContent = totalCount;
     subTotalCheckout.textContent = `₹${subTotal}`;
     receiptSubTotal.textContent = `₹${subTotal}`;
     priceCheckout.forEach((price)=>{
-        price.textContent = `₹${subTotal + 40}`;
+        price.textContent = `₹${totalAmt}`;
     });
 }
-
+let itemsInCart = [];
 let cartItems = getCartItems();
     cartListCheckout.textContent = "";
     cartItems.forEach((item) => {
+        foodItems = {
+            foodName: item.name,
+            quantity: item.quantity
+        }
+        itemsInCart.push(foodItems);
         const outerDiv = createElement("div","flex justify-between items-center gap-3");
         const contentDiv = createElement("div","flex items-center gap-3");
         const quantityText = createElement("span","text-xs size-6 rounded-full bg-gray-100 flex items-center justify-center",item.quantity); 
@@ -48,7 +55,7 @@ let cartItems = getCartItems();
         calculateTotal();
     });
 
-form.addEventListener("submit",(e)=>{
+form.addEventListener("submit",async (e)=>{
     e.preventDefault();
 
     let name = document.getElementById("name").value.trim();
@@ -90,15 +97,51 @@ form.addEventListener("submit",(e)=>{
     }
 
     if(isValid){
+        const user = getLoggedInUser();
+        const currentDate = new Date();
+        const order = {
+            userId: user.id,
+            name: name,
+            deliveryAddress: deliveryAddress,
+            phone: phone,
+            items: itemsInCart,
+            total: totalAmt,
+            date: `${currentDate.toDateString()} , ${currentDate.toLocaleTimeString()}`,
+            status: "Delivered"
+        }
+        if (specialInstructions){
+            order.specialInstructions = specialInstructions;
+        }
+
+        try{
+            const response = await fetch("http://localhost:3000/orders",{
+                method: "POST",
+                headers: {
+                    "Content-Type":"application/json"
+                },
+                body: JSON.stringify(order)
+            })
+            if(!response.ok){
+                throw new Error("Failed to save order!");
+            }
+        }catch(error){
+            console.log(error);
+        }
+
         orderConfirmationDialog.showModal();
         document.body.classList.add("overflow-hidden");
         form.reset();
         exploreMenuBtn.addEventListener("click",()=>{
             window.location.href = "../pages/menu.html";
-            
         });
         cart=[];
-        localStorage.setItem("cart",JSON.stringify(cart));
+        saveCartItems(cart); 
+
+        orderConfirmationDialog.addEventListener("close",()=>{
+            document.body.classList.remove("hidden");
+            window.location.href = "../index.html";
+        });
+
     }
 
 

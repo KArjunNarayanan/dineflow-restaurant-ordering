@@ -1,18 +1,144 @@
 {
   "users": [
     {
-      "name": "K Arjun Narayanan",
+      "name": "K Arjun Naryanan",
       "email": "arjun@gmail.com",
-      "password": "Arjun@2003",
-      "id": "mjIkKpMvpKQ"
+      "password": "Karjun2003",
+      "id": "of5eqHPAaH0"
     },
     {
-      "name": "K Ajay Narayanan",
+      "name": "ajay",
       "email": "ajay@gmail.com",
-      "password": "Ajay@2003",
-      "id": "e7TPaxSzovs"
+      "password": "Ajay2003",
+      "id": "WELRkN1tx-k"
+    },
+    {
+      "name": "Adhithyan",
+      "email": "adhi@gmail.com",
+      "password": "Adhi2010",
+      "id": "X2KbgaJSdR8"
     }
   ],
+  "orders": [
+    {
+      "userId": "of5eqHPAaH0",
+      "name": "K Arjun Narayanan",
+      "deliveryAddress": "House ",
+      "phone": "9087898767",
+      "items": [
+        {
+          "foodName": "Paneer Butter Masala",
+          "quantity": 1
+        },
+        {
+          "foodName": "Kerala Beef Roast & Parotta",
+          "quantity": 1
+        },
+        {
+          "foodName": "Thalassery Dum Biriyani",
+          "quantity": 2
+        }
+      ],
+      "total": 1149,
+      "date": "Mon Oct 26 2026 , 5:10:22 PM",
+      "status": "Delivered",
+      "specialInstructions": "junction near",
+      "id": "4G1jeMuuRmY"
+    },
+    {
+      "userId": "WELRkN1tx-k",
+      "name": "Ajay",
+      "deliveryAddress": "House ",
+      "phone": "9087898767",
+      "items": [
+        {
+          "foodName": "Meen Pollichathu & Parotta",
+          "quantity": 2
+        },
+        {
+          "foodName": "Paneer Butter Masala",
+          "quantity": 1
+        },
+        {
+          "foodName": "Farmhouse Special Pizza",
+          "quantity": 3
+        }
+      ],
+      "total": 1637,
+      "date": "Mon Oct 26 2026 , 5:28:29 PM",
+      "status": "Delivered",
+      "id": "yRlhSgJ2MBE"
+    },
+    {
+      "userId": "WELRkN1tx-k",
+      "name": "Ajay",
+      "deliveryAddress": "house",
+      "phone": "9087898767",
+      "items": [
+        {
+          "foodName": "Farmhouse Special Pizza",
+          "quantity": 9
+        }
+      ],
+      "total": 2731,
+      "date": "Mon Oct 26 2026 , 7:08:03 PM",
+      "status": "Delivered",
+      "id": "lHUQ3j00tCM"
+    },
+    {
+      "userId": "X2KbgaJSdR8",
+      "name": "Adhithyan",
+      "deliveryAddress": "House",
+      "phone": "9087898767",
+      "items": [
+        {
+          "foodName": "Mango Smoothie",
+          "quantity": 1
+        },
+        {
+          "foodName": "Kerala Beef Roast & Parotta",
+          "quantity": 1
+        },
+        {
+          "foodName": "Chocolate Brownie",
+          "quantity": 3
+        }
+      ],
+      "total": 829,
+      "date": "Mon Oct 26 2026 , 7:13:49 PM",
+      "status": "Delivered",
+      "id": "iyd1SeeYm4U"
+    },
+    {
+      "userId": "X2KbgaJSdR8",
+      "name": "Adhithyan",
+      "deliveryAddress": "House ",
+      "phone": "9087898767",
+      "items": [
+        {
+          "foodName": "Classic Burger",
+          "quantity": 1
+        },
+        {
+          "foodName": "Mango Smoothie",
+          "quantity": 1
+        },
+        {
+          "foodName": "Paneer Butter Masala",
+          "quantity": 1
+        },
+        {
+          "foodName": "Meen Pollichathu & Parotta",
+          "quantity": 1
+        }
+      ],
+      "total": 879,
+      "date": "Mon Oct 26 2026 , 7:41:06 PM",
+      "status": "Delivered",
+      "id": "2-MC0mKBfWI"
+    }
+  ],
+  "reviews": [],
   "menu": [
     {
       "id": "food101",
@@ -288,6 +414,63 @@
       "reviewCount": 0
     }
   ],
-  "bookings": [],
+  "bookings": [
+    {
+      "userId": "of5eqHPAaH0",
+      "date": "2026-10-14",
+      "time": "8:30 PM (DINNER)",
+      "guests": "5 Guests",
+      "seating": "Rooftop Lounge",
+      "table": "Table #07",
+      "specialRequest": "Dinner Special",
+      "status": "Confirmed",
+      "createdAt": "Sun Oct 25 2026 20:44:17 GMT+0530 (India Standard Time)",
+      "id": "oleuSbHcwS4"
+    },
+    {
+      "userId": "of5eqHPAaH0",
+      "date": "2026-10-29",
+      "time": "6:30 PM (DINNER)",
+      "guests": "10+ Guests (Large)",
+      "seating": "Outdoor Patio",
+      "table": "Table #04",
+      "status": "Confirmed",
+      "createdAt": "Mon Oct 26 2026 17:27:28 GMT+0530 (India Standard Time)",
+      "id": "kKsCthKeqI4"
+    },
+    {
+      "userId": "WELRkN1tx-k",
+      "date": "2026-10-31",
+      "time": "2:00 PM (LUNCH)",
+      "guests": "5 Guests",
+      "seating": "Rooftop Lounge",
+      "table": "Table #01",
+      "status": "Confirmed",
+      "createdAt": "Mon Oct 26 2026 17:29:16 GMT+0530 (India Standard Time)",
+      "id": "S8lqMPemq3M"
+    },
+    {
+      "userId": "WELRkN1tx-k",
+      "date": "2026-10-30",
+      "time": "6:30 PM (DINNER)",
+      "guests": "4 Guests (Standard)",
+      "seating": "Outdoor Patio",
+      "table": "Table #02",
+      "status": "Confirmed",
+      "createdAt": "Mon Oct 26 2026 19:09:36 GMT+0530 (India Standard Time)",
+      "id": "HcXgrZFDcr4"
+    },
+    {
+      "userId": "X2KbgaJSdR8",
+      "date": "2026-10-31",
+      "time": "2:00 PM (LUNCH)",
+      "guests": "2 Guests",
+      "seating": "Indoor",
+      "table": "Table #04",
+      "status": "Confirmed",
+      "createdAt": "Mon Oct 26 2026 19:14:33 GMT+0530 (India Standard Time)",
+      "id": "zzqodbYCnaA"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }

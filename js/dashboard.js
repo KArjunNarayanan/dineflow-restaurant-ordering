@@ -1,13 +1,51 @@
 
 const ordersContainer = document.getElementById("order-container");
+const orderCount = document.querySelectorAll(".orderCount");
+const logoutBtn = document.getElementById("logoutBtn");
+const userLogo = document.getElementById("userLogo");
+const userNameMessage = document.getElementById("userNameMessage");
+const userEmail = document.getElementById("userEmail");
+const userGreeting = document.getElementById("userGreeting");
 
-const order = {
-    id: "ORD1234",
-    status: "Preparing",
-    items: "1x Farmhouse Special Pizza, 1x Veg Supreme Burger",
-    date: "20 Aug 2025 • 7:45 PM",
-    price: "₹500"
-};
+updateNavbarCartCount();
+logoutBtn.addEventListener("click",()=>{
+    localStorage.removeItem("loggedInUser");
+    window.location.href = "../pages/auth.html";
+});
+async function fetchingOrderDetails(){
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+    userNameMessage.textContent = user.name;
+    userEmail.textContent = user.email;
+    userGreeting.textContent = `Welcome, ${user.name} ☺️`;
+    try{
+        const response = await fetch("http://localhost:3000/orders")
+        if(!response.ok){
+            throw new Error("Fetching order details failed!");
+        }
+        const orders = await response.json();
+        const userOrders = orders.filter((order) => {
+            return String(order.userId) === String(user.id);
+        });
+        orderCount.forEach((orderNo)=>{
+            orderNo.textContent = userOrders.length;
+        });
+        ordersContainer.textContent="";
+        if(userOrders.length === 0){
+            const para1 = document.createElement("p");
+            para1.textContent = "No record found!";
+            para1.classList = "text-[var(--primary-color)] font-semibold";
+            ordersContainer.appendChild(para1);
+        }
+        userOrders.forEach((order)=>{
+            ordersContainer.appendChild(createOrderDelivered(order));
+        });
+    }catch(error){
+        console.error("Error fetching orders:", error);
+        ordersContainer.textContent ="Unable to load orders. Please try again.";
+        ordersContainer.classList = "text-red-600 font-semibold";
+    }
+}
+fetchingOrderDetails();
 
 function createOrderDelivered(order){   
     const orderDiv = document.createElement("div");
@@ -45,9 +83,13 @@ function createOrderDelivered(order){
     titleDiv.append(title,status);
 
     const items = document.createElement("p");
-    items.className ="text-sm text-gray-600 mt-1 font-medium";
-    items.textContent = order.items;
-
+    items.className ="text-sm text-gray-600 mt-1 font-medium flex flex-wrap sm:max-w-sm md:max-w-xl";
+    order.items.forEach((item)=>{
+        const fudItems = document.createElement("span");
+        fudItems.textContent = ` ${item.quantity}× ${item.foodName} ● `;
+        items.appendChild(fudItems);
+    });
+    
     const date = document.createElement("time");
     date.className ="text-xs text-gray-400 mt-0.5";
     date.textContent = order.date;
@@ -60,15 +102,31 @@ function createOrderDelivered(order){
 
     const price = document.createElement("span");
     price.className ="text-base font-bold text-gray-900";
-    price.textContent = order.price;
+    price.textContent = `₹${order.total}`;
 
     const buttonDiv = document.createElement("div");
     buttonDiv.className = "flex items-center gap-2";
 
     const cancelButton = document.createElement("button");
     cancelButton.type = "button";
-    cancelButton.className ="px-3 py-1.5 rounded-lg border border-red-200 text-xs font-semibold text-red-600 hover:bg-red-50 flex items-center gap-1.5 transition-all";
+    cancelButton.className ="px-3 py-1.5 whitespace-nowrap rounded-lg border border-red-200 text-xs font-semibold text-red-600 hover:bg-red-50 flex items-center gap-1.5 transition";
     cancelButton.textContent = "Delete Order";
+    cancelButton.addEventListener("click",async ()=>{
+        const confirmDeleteOrder = confirm("Are you sure want to delete this order?");
+        if(!confirmDeleteOrder) return;
+        try{
+            const response = await fetch(`http://localhost:3000/orders/${order.id}`,{
+                method: "DELETE"
+            })
+            if(!response.ok){
+                throw new Error("Deleting failed!");
+            }
+            alert("Order Deleted Successfully");
+            await fetchingOrderDetails();
+        }catch(error){
+            console.log(error);
+        }
+    });
 
     buttonDiv.appendChild(cancelButton);
     rightDiv.append(price, buttonDiv);
@@ -77,78 +135,7 @@ function createOrderDelivered(order){
     
     return orderDiv;
 }
-ordersContainer.appendChild(createOrderDelivered(order));
 
-
-function createOrderPreparing(order) {
-    const orderDiv = document.createElement("div");
-    orderDiv.className = "py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all duration-300";
-
-    const leftDiv = document.createElement("div");
-    leftDiv.className = "flex items-start gap-4";
-
-    const iconDiv = document.createElement("div");
-    iconDiv.className ="w-12 h-12 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center";
-    iconDiv.innerHTML = `
-        <svg class="w-6 h-6" fill="none" stroke="currentColor"
-            viewBox="0 0 24 24">
-            <path
-                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 12H4L5 9z"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2">
-            </path>
-        </svg>`;
-
-    const detailsDiv = document.createElement("div");
-
-    const titleDiv = document.createElement("div");
-    titleDiv.className = "flex items-center gap-2";
-
-    const title = document.createElement("h4");
-    title.className = "text-base font-bold text-gray-900";
-    title.textContent = `Order #${order.id}`;
-
-    const status = document.createElement("span");
-    status.className ="px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-600 border border-amber-200";
-    status.textContent = order.status;
-
-    titleDiv.append(title,status);
-
-    const items = document.createElement("p");
-    items.className ="text-sm text-gray-600 mt-1 font-medium";
-    items.textContent = order.items;
-
-    const date = document.createElement("time");
-    date.className ="text-xs text-gray-400 mt-0.5";
-    date.textContent = order.date;
-
-    detailsDiv.append(titleDiv, items, date);
-    leftDiv.append(iconDiv, detailsDiv);
-
-    const rightDiv = document.createElement("div");
-    rightDiv.className ="flex sm:flex-col items-center sm:items-end justify-between gap-3";
-
-    const price = document.createElement("span");
-    price.className ="text-base font-bold text-gray-900";
-    price.textContent = order.price;
-
-    const buttonDiv = document.createElement("div");
-    buttonDiv.className = "flex items-center gap-2";
-
-    const cancelButton = document.createElement("button");
-    cancelButton.type = "button";
-    cancelButton.className ="px-3 py-1.5 rounded-lg border border-red-200 text-xs font-semibold text-red-600 hover:bg-red-50 flex items-center gap-1.5 transition-all";
-    cancelButton.textContent = "Cancel Order";
-
-    buttonDiv.appendChild(cancelButton);
-    rightDiv.append(price, buttonDiv);
-
-    orderDiv.append(leftDiv, rightDiv);
-    
-    return orderDiv;
-}
-ordersContainer.appendChild(createOrderPreparing(order));
 
 const bookingsContainer = document.getElementById("bookings-container");
 const bookingCount = document.querySelectorAll(".bookingCount");
@@ -234,8 +221,7 @@ function createBooking(booking){
     cancelButton.className ="px-4 py-2 rounded-lg border border-red-200 text-sm font-semibold text-red-600 hover:bg-red-50 flex items-center gap-2 cursor-pointer transition-all";
     cancelButton.textContent = "Cancel Booking";
 
-    cancelButton.addEventListener("click",async (e)=>{
-        e.preventDefault();
+    cancelButton.addEventListener("click",async ()=>{
         const confirmDelete = confirm("Are you sure you want to cancel this booking?");
         if(!confirmDelete){return}
         try{
@@ -261,24 +247,27 @@ function createBooking(booking){
 }
 
 async function fetchBookings(){
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
     try{
         const response = await fetch("http://localhost:3000/bookings")
         if (!response.ok) {
             throw new Error("Failed to fetch bookings");
         }
         const bookings = await response.json();
-        const totalBookings = bookings.length;
+        const userBookings = bookings.filter((booking) => {
+            return String(booking.userId) === String(user.id);
+        });
         bookingCount.forEach((count) => {
-            count.textContent = totalBookings;
+            count.textContent = userBookings.length;
         });
         bookingsContainer.textContent = "";
-        if(bookings.length === 0){
+        if(userBookings.length === 0){
             const para = document.createElement("p");
             para.textContent = "No record found!";
             para.classList = "text-[var(--primary-color)] font-semibold";
             bookingsContainer.appendChild(para);
         }
-        bookings.forEach((booking)=>{
+        userBookings.forEach((booking)=>{
             bookingsContainer.appendChild(createBooking(booking));
         });
 
@@ -381,9 +370,9 @@ function createFavorites(favorites){
         heartIcon.className = "fa-solid fa-heart text-red-500 text-sm cursor-pointer";
 
         heartIcon.addEventListener("click",()=>{
-            favorites = JSON.parse(localStorage.getItem("favorites"));
+            favorites = getFavoritesItems();
             favorites = favorites.filter((food) => food.id !== item.id);
-            localStorage.setItem("favorites",JSON.stringify(favorites));
+            saveFavoritesItems(favorites);
             displayFavorites();
         });
         heartContainer.appendChild(heartIcon);
@@ -406,7 +395,7 @@ function createFavorites(favorites){
         addButton.textContent = "Add";
         addButton.className = "px-3 py-1 text-xs bg-[var(--primary-color)] text-white font-semibold rounded-md hover:opacity-90 cursor-pointer";
         addButton.addEventListener("click",()=>{
-            let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+            let cartItems = getCartItems();
             let exists = cartItems.some((cartItem)=>{
                 return cartItem.id === item.id;
             });
@@ -423,7 +412,7 @@ function createFavorites(favorites){
                     rating: item.rating,
                     type: item.dietaryTags[0]
                 });
-                localStorage.setItem("cart",JSON.stringify(cartItems));
+                saveCartItems(cartItems);
                 alert("Added to cart");
                 updateNavbarCartCount();
             }
@@ -438,7 +427,7 @@ function createFavorites(favorites){
 }
 
 function displayFavorites(){
-    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    let favorites = getFavoritesItems();
     let currentFavoriteCount = favorites.length;
     favoriteCount.forEach((fav)=>{
         fav.textContent = currentFavoriteCount;

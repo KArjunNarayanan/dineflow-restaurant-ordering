@@ -9,13 +9,6 @@ let cartSubtotal = document.getElementById("cart-subtotal");
 let totalPriceCart = document.getElementById("cart-total");
 
 
-function getCartItems(){
-    return JSON.parse(localStorage.getItem("cart")) || [];
-}
-function saveCartItems(cartItems){
-    localStorage.setItem("cart", JSON.stringify(cartItems));
-}
-
 let cartItems = getCartItems();
 
 function updateCartCount() {

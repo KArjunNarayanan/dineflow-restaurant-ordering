@@ -26,9 +26,14 @@
                     <div id="cartCountBadge" class="hidden absolute -top-1 right-0  size-4 flex justify-center items-center bg-orange-600 text-xs rounded-full p-2 text-white font-semibold">
                         <span id="cart-items-count"></span>
                     </div>
-                    <span class="material-symbols-outlined "><a href="./cart.html">shopping_cart</a></span>
+                    <span id="shopping-cart" class="material-symbols-outlined">shopping_cart</span>
                 </div>
-                <a href="./auth.html" id="loginBtnHome" class="inline-flex items-center justify-center text-orange-500 hover:text-orange-700 transition duration-200"><span class="material-symbols-outlined !text-4xl">account_circle</span></a>
+                <div id="GuestIcon" class="">
+                     <a href="./auth.html" id="loginBtnHome" class="inline-flex items-center justify-center text-orange-500 hover:text-orange-700 transition duration-200"><span class="material-symbols-outlined !text-4xl">account_circle</span></a>
+                </div>
+                <div class="profile-user size-10 rounded-full bg-[var(--primary-color)] flex justify-center items-center border-3 border-yellow-500 hover:opacity-86 hover:cursor-pointer">
+                    <a href="./dashboard.html"><p id="userInitials" class="font-semibold text-white"></p></a>
+                </div>
                 <button id="menuBtn" class="md:hidden text-2xl">
                     <i class="fa-solid fa-bars"></i>
                 </button>
@@ -101,6 +106,7 @@
                         <div class="input-group flex flex-col gap-2 flex-1">
                             <label for="dateInput" class="text-[0.8125rem] font-medium text-gray-600">DATE</label>
                             <input type="date" id="dateInput" class="w-full p-3 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-2 ring-[var(--primary-color)] text-gray-600 ">
+                            <p id="dateError" class="error"></p>
                         </div>
                         <div class="input-group flex flex-col gap-2 flex-1">
                             <label for="timeSelect" class="text-[0.8125rem] font-medium text-gray-600">TIME</label>
@@ -114,29 +120,34 @@
                                 <option value="8:30 PM (DINNER)">8:30 PM (DINNER)</option>
                                 <option value="9:30 PM (DINNER)">9:30 PM (DINNER)</option>
                             </select>
+                            <p id="timeError" class="error"></p>
                         </div>
                     </div>
                     <div class="flex flex-col sm:flex-row gap-5">
                         <div class="input-group flex flex-col gap-2 flex-1">
                             <label for="noGuestInput" class="text-[0.8125rem] font-medium text-gray-600">NUMBER OF GUESTS</label>
                             <select name="noGuestInput" id="noGuestInput" class="w-full p-3 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-2 ring-[var(--primary-color)] text-gray-600 ">
+                                <option value="">Select no of Guests</option>
                                 <option value="1 Person">1 Person</option>
                                 <option value="2 Guests">2 Guests</option>
                                 <option value="3 Guests">3 Guests</option>
-                                <option value="4 Guests (Standard)"selected>4 Guests (Standard)</option>
+                                <option value="4 Guests (Standard)">4 Guests (Standard)</option>
                                 <option value="5 Guests">5 Guests</option>
                                 <option value="6 Guests">6 Guests</option>
                                 <option value="8 Guests (Large)">8 Guests (Large)</option>
                                 <option value="10+ Guests (Large)">10+ Guests (Party)</option>
                             </select>
+                            <p id="guestsError" class="error"></p>
                         </div>
                         <div class="input-group flex flex-col gap-2 flex-1">
                             <label for="seatPrefer" class="text-[0.8125rem] font-medium text-gray-600 uppercase">Seating Preference</label>
                             <select name="seatPrefer" id="seatPrefer" class="w-full p-3 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-2 ring-[var(--primary-color)] text-gray-600 ">
+                                <option value="">Select seating preference</option>
                                 <option value="Indoor">Indoor</option>
                                 <option value="Outdoor Patio">Outdoor Patio</option>
                                 <option value="Rooftop Lounge">Rooftop Lounge</option>
                             </select>
+                            <p id="seatingError" class="error"></p>
                         </div>
                     </div>
                     <div class="flex flex-col mb-4">
@@ -145,7 +156,6 @@
                     </div>
                     <button id="bookTableBtn" class="text-white w-full bg-[var(--primary-color)] rounded-lg py-3 font-medium shadow-md shadow-[var(--primary-color)] hover:cursor-pointer" type="submit">Book a Table</button>
                 </form>
-                <p id="result"></p>
             </div>
         </section>
     </main>
@@ -195,7 +205,8 @@
             <p class="text-xs text-gray-400 font-extralight">© 2026 DineFlow. All rights reserved.</p>
         </div>
     </footer>
-    <script src="../js/about.js"></script>
+    <script src="../js/userStorage.js"></script>
     <script src="../js/index.js"></script>
+    <script src="../js/about.js"></script>
 </body>
 </html>

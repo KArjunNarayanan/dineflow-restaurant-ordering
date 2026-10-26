@@ -224,6 +224,9 @@
 
 /* menu.html */
 
+.scroll{
+    scrollbar-width: none;
+}
 .card-menu {
     display: flex;
     flex-direction: column;

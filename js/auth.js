@@ -61,7 +61,7 @@ loginForm.addEventListener("submit",async (e)=>{
             setTimeout(()=>{
                 loginMessage.textContent = "";
                 signupClick();
-            },2500);
+            },1000);
 
             return;
         }
@@ -205,3 +205,5 @@ loginBtn.addEventListener("click",()=>{
 signupBtn.addEventListener("click",()=>{
     signupClick();
 });
+
+

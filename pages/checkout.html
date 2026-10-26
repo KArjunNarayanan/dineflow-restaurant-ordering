@@ -26,10 +26,13 @@
                     <div id="cartCountBadge" class="hidden absolute -top-1 right-0  size-4 flex justify-center items-center bg-orange-600 text-xs rounded-full p-2 text-white font-semibold">
                         <span id="cart-items-count"></span>
                     </div>
-                    <span class="material-symbols-outlined "><a href="./cart.html">shopping_cart</a></span>
+                    <span id="shopping-cart" class="material-symbols-outlined">shopping_cart</span>
+                </div>
+                <div id="GuestIcon" class="">
+                     <a href="./auth.html" id="loginBtnHome" class="inline-flex items-center justify-center text-orange-500 hover:text-orange-700 transition duration-200"><span class="material-symbols-outlined !text-4xl">account_circle</span></a>
                 </div>
                 <div class="profile-user size-10 rounded-full bg-[var(--primary-color)] flex justify-center items-center border-3 border-yellow-500 hover:opacity-86 hover:cursor-pointer">
-                    <a href="./dashboard.html"><p class="font-semibold text-white">AR</p></a>
+                    <a href="./dashboard.html"><p id="userInitials" class="font-semibold text-white"></p></a>
                 </div>
                 <button id="menuBtn" class="md:hidden text-2xl">
                     <i class="fa-solid fa-bars"></i>
@@ -138,11 +141,6 @@
                 <p class="font-medium">Thank you for ordering with DineFlow!</p>
                 <p class="text-gray-700 text-sm">Your order has been confirmed. We're preparing your delicious meal with care.</p>
             </div>
-            <div class="flex flex-col gap-2 border-y border-gray-300 py-3 w-full my-1">
-                <h4 class="text-gray-700 font-medium text-sm">YOUR ORDER ID</h4>
-                <span class="text-orange-500 font-medium">#DF-20261024-001</span>
-                <span class="text-xs text-gray-600">Please keep this ID for future reference.</span>
-            </div>
         </div>
         <div class="flex flex-col gap-2 border-b border-gray-300 py-3">
             <div class="flex justify-between items-center">
@@ -208,6 +206,7 @@
             <p class="text-xs text-gray-400 font-extralight">© 2026 DineFlow. All rights reserved.</p>
         </div>
     </footer>
+    <script src="../js/userStorage.js"></script>
     <script src="../js/index.js"></script>
     <script src="../js/checkout.js"></script>
 </body>

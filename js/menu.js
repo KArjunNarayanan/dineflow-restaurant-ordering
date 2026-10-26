@@ -2,11 +2,13 @@ const menuContainer = document.getElementById("menu-container");
 const menuSearchInput = document.getElementById("menuSearchInput");
 const dietaryFilters = document.querySelectorAll(".dietary-filter");
 const priceFilters = document.querySelectorAll(".price-filter");
+const profileUserBtn = document.querySelector(".profile-user");
 const bothDietary = document.getElementById("bothDietary");
 const priceSort = document.getElementById("priceSort");
 
 let allFoods = [];
 async function loadMenu() {
+    updateNavbarCartCount();
     try {
         const response = await fetch("http://localhost:3000/menu");
         if (!response.ok) {
@@ -37,7 +39,7 @@ let selectedCategory = "All";
 
 function applyFilters() {
     const searchText = menuSearchInput.value.trim().toLowerCase();
-    let filteredFoods = [...allFoods];
+    let filteredFoods = allFoods;
 
     if (selectedCategory !== "All") {
         filteredFoods = filteredFoods.filter((food) => {
@@ -149,15 +151,6 @@ menuSearchInput.addEventListener("input",()=>{
     applyFilters();
 });
 
-
-function getFavorites() {
-    return JSON.parse(localStorage.getItem("favorites")) || [];
-}
-
-function saveFavorites(favorites) {
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-}
-
 function updateMenuContainer(food){
     const card = document.createElement("div");
     card.classList.add("card-menu");
@@ -181,7 +174,7 @@ function updateMenuContainer(food){
     favoriteButton.textContent = "♡";
     imageContainer.appendChild(favoriteButton);
 
-    let favorites = getFavorites();
+    let favorites = getFavoritesItems();
 
     let alreadyAdded = false;
     for(let item of favorites){
@@ -197,10 +190,17 @@ function updateMenuContainer(food){
         favoriteButton.textContent = "♡";
     }
 
+
+    profileUserBtn.addEventListener("click",()=>{
+        
+    });
     favoriteButton.addEventListener("click",(e)=>{
         e.stopPropagation();
+        if(!checkUserLogin()){
+            return;
+        }
         favoriteButton.classList.toggle("favorite-btn-clicked");
-        favorites = getFavorites();
+        favorites = getFavoritesItems();
 
         alreadyAdded = false;
         for(let item of favorites){
@@ -217,7 +217,7 @@ function updateMenuContainer(food){
             favorites.push(food);
             favoriteButton.textContent = "♥";
         }
-        saveFavorites(favorites);
+        saveFavoritesItems(favorites);
     });
 
     const cardContent = document.createElement("div");
@@ -246,14 +246,9 @@ function updateMenuContainer(food){
 
     rating.appendChild(ratingNumber);
 
-    const reviews = document.createElement("span");
-    reviews.classList.add("reviews");
-    reviews.textContent = `(${food.reviewCount})`;
-
     ratingRow.appendChild(category);
     ratingRow.appendChild(rating);
-    ratingRow.appendChild(reviews);
-
+    
     const description = document.createElement("p");
     description.classList.add("menu-description");
     description.textContent = food.description;
@@ -269,8 +264,11 @@ function updateMenuContainer(food){
     cartButton.classList.add("add-cart");
     cartButton.textContent = "Add to Cart";
     cartButton.addEventListener("click",(e)=>{
-        e.stopPropagation();    
-        let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+        e.stopPropagation();   
+        if(!checkUserLogin()){
+            return;
+        } 
+        let cartItems = getCartItems();
         let alreadyAdded = cartItems.find((item)=>{
             return item.id === food.id
         });
@@ -287,11 +285,10 @@ function updateMenuContainer(food){
             quantity: 1,
             type: food.dietaryTags[0].toLowerCase()
         });
-        localStorage.setItem("cart", JSON.stringify(cartItems));
-        updateNavbarCartCount();
+        saveCartItems(cartItems);
         alert("Item added to cart!");
+        updateNavbarCartCount();
     });
-
     cardBottom.appendChild(price);
     cardBottom.appendChild(cartButton);
 

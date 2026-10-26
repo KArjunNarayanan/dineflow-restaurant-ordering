@@ -3,39 +3,49 @@ let dateInput = document.getElementById("dateInput");
 let timeSelect = document.getElementById("timeSelect");
 let noGuestInput = document.getElementById("noGuestInput");
 let seatPrefer = document.getElementById("seatPrefer");
-let specialRequest = document.getElementById("special-request");
-let result = document.getElementById("result");
+let specialRequestInput = document.getElementById("special-request");
+let dateError = document.getElementById("dateError");
+let timeError = document.getElementById("timeError");
+let guestsError = document.getElementById("guestsError");
+let seatingError = document.getElementById("seatingError");
 
-let requiredFields = [dateInput,timeSelect];
-
-function validateFields(field){
-    if(field.value === ""){
-        field.classList.remove("border-[var(--text-grey)]","border");
-        field.classList.add("border-2","border-red-600")
-        return false;
-    }else {
-        field.classList.add("border-[var(--text-grey)]","border");
-        field.classList.remove("border-2","border-red-600");
-        return true;
-    }
-}
-
-requiredFields.forEach((field)=>{
-    field.addEventListener("change",()=>{
-        validateFields(field);
-    })
-});
+updateNavbarCartCount();
 
 form.addEventListener("submit",async (e)=>{
     e.preventDefault();
+    if(!checkUserLogin()){
+        return;
+    }
+
+    const date = dateInput.value;
+    const time = timeSelect.value;
+    const guests = noGuestInput.value;
+    const seating = seatPrefer.value;
+    const specialRequest = specialRequestInput.value.trim();
+
+    dateError.textContent = "";
+    timeError.textContent = "";
+    guestsError.textContent = "";
+    seatingError.textContent = "";
 
     let isValid = true;
 
-    requiredFields.forEach((field)=>{
-        if(!validateFields(field)){
-            isValid = false;
-        }
-    });
+    if(date === ""){
+        dateError.textContent = "This is a required field*";
+        isValid = false;
+    }
+    if(time === ""){
+        timeError.textContent = "This is a required field*";
+        isValid = false;
+    }
+    if(guests === ""){
+        guestsError.textContent = "This is a required field*";
+        isValid = false;
+    }
+    if(seating === ""){
+        seatingError.textContent = "This is a required field*";
+        isValid = false;
+    }
 
     if(!isValid){
         return;
@@ -45,15 +55,17 @@ form.addEventListener("submit",async (e)=>{
 
     let randomIndex = Math.floor(Math.random() * availableTables.length);
     let allocatedTable = availableTables[randomIndex];
+    const user = getLoggedInUser();
     const bookingData = {
-        date: dateInput.value,
-        time: timeSelect.value,
-        guests: noGuestInput.value,
-        seating: seatPrefer.value,
+        userId: user.id,
+        date: date,
+        time: time,
+        guests: guests,
+        seating: seating,
         table: allocatedTable,
-        specialRequest: specialRequest.value.trim(),
+        specialRequest: specialRequest.value,
         status: "Confirmed",
-        createdAt: new Date().toISOString()
+        createdAt: new Date().toString()
     };
 
     try{

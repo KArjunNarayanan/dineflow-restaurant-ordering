@@ -7,6 +7,7 @@ let quantity = 1;
 let isFavourite = false;
 
 let foodId = localStorage.getItem("selectedFoodId");
+updateNavbarCartCount();
 
 function createElement(tag,className="",text=""){
     let element = document.createElement(tag);
@@ -35,8 +36,6 @@ async function loadFoodDetails() {
         displayFoodDetails();
     }catch(error){
         console.log(error);
-        foodDetailsContainer.appendChild(createElement("p","text-red-600 text-center py-10","Unable to load food details!. Please try again."));
-        loading.classList.add("hidden");
     }
 }
 
@@ -130,14 +129,17 @@ function displayFoodDetails(){
 
     const actions = createElement("div","flex flex-col gap-3 pt-5");
     const favouriteBtn = createElement("button","w-full flex items-center justify-center gap-2 py-3 px-4 border border-orange-500 rounded-xl text-orange-600 hover:bg-orange-50 transition duration-150 text-sm font-semibold");
-    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    let favorites = getFavoritesItems();
     isFavourite = favorites.some((item)=>{
         return String(item.id) === String(selectedFood.id);
     });
     favouriteBtn.textContent = isFavourite ? "♥ Favourited": "♡ Favourites"; 
     favouriteBtn.classList.toggle("bg-orange-50", isFavourite);
     favouriteBtn.addEventListener("click", ()=> {
-        let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+        if(!checkUserLogin()){
+            return;
+        }
+        let favorites = getFavoritesItems();
         let exists = favorites.some((item)=>{
             return String(item.id) === String(selectedFood.id);
         });
@@ -150,13 +152,16 @@ function displayFoodDetails(){
             favorites.push(selectedFood);
             isFavourite = true;
         }
-        localStorage.setItem("favorites", JSON.stringify(favorites));
+        saveFavoritesItems(favorites);
         favouriteBtn.textContent = isFavourite ? "♥ Favourited": "♡ Favourites";
         favouriteBtn.classList.toggle("bg-orange-50", isFavourite);
     });
 
     const addToCartBtn = createElement("button","w-full flex items-center justify-center py-3 px-4 bg-[var(--primary-color)] rounded-xl text-white font-semibold text-sm","Add to Cart");
     addToCartBtn.addEventListener("click",()=>{
+        if(!checkUserLogin()){
+            return;
+        }
         addToCart();
         updateNavbarCartCount();
     });
@@ -168,7 +173,7 @@ function displayFoodDetails(){
 }
 
 function addToCart(){
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let cart = getCartItems();
     const existingItem = cart.find(function(item) {
         return String(item.id) === String(selectedFood.id);
     });
@@ -186,7 +191,7 @@ function addToCart(){
             type: selectedFood.dietaryTags[0].toLowerCase()
         });
     }
-    localStorage.setItem("cart",JSON.stringify(cart));
+    saveCartItems(cart);
     alert("Food added to cart");
 }
 
