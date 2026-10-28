@@ -40,6 +40,7 @@ let cartItems = getCartItems();
     cartListCheckout.textContent = "";
     cartItems.forEach((item) => {
         foodItems = {
+            foodId: item.id,
             foodName: item.name,
             quantity: item.quantity
         }

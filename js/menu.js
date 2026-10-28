@@ -7,14 +7,16 @@ const bothDietary = document.getElementById("bothDietary");
 const priceSort = document.getElementById("priceSort");
 
 let allFoods = [];
+let allReviews = [];
 async function loadMenu() {
     updateNavbarCartCount();
     try {
-        const response = await fetch("http://localhost:3000/menu");
-        if (!response.ok) {
-            throw new Error("Failed to fetch menu data");
+        const [menuResponse, reviewsResponse] = await Promise.all([fetch("http://localhost:3000/menu"),fetch("http://localhost:3000/reviews")]);
+        if (!menuResponse.ok || !reviewsResponse.ok) {
+            throw new Error("Failed to fetch menu / reviews data");
         }
-        allFoods = await response.json();
+        allFoods = await menuResponse.json();
+        allReviews = await reviewsResponse.json();
         displayMenu(allFoods);
     } catch (error) {
         console.error("Error loading menu:", error);
@@ -190,7 +192,6 @@ function updateMenuContainer(food){
         favoriteButton.textContent = "♡";
     }
 
-
     profileUserBtn.addEventListener("click",()=>{
         
     });
@@ -236,18 +237,24 @@ function updateMenuContainer(food){
         category.classList.add("veg");
     }
     category.textContent = food.dietaryTags[0];
-
-    const rating = document.createElement("span");
-    rating.classList.add("menu-rating");
-    rating.textContent = "★";
-
-    const ratingNumber = document.createElement("span");
-    ratingNumber.textContent = food.rating;
-
-    rating.appendChild(ratingNumber);
-
-    ratingRow.appendChild(category);
-    ratingRow.appendChild(rating);
+    
+    const foodRating = getFoodRating(food.id,allReviews);
+    if(foodRating.reviewCount > 0) {
+        const rating = document.createElement("span");
+        rating.classList.add("menu-rating");
+        rating.textContent = "★";
+        const ratingNumber = document.createElement("span");
+        ratingNumber.textContent = foodRating.rating.toFixed(1);
+        rating.appendChild(ratingNumber);
+        const reviews = document.createElement("span");
+        reviews.classList.add("reviews");
+        reviews.textContent = `(${foodRating.reviewCount})`;
+        
+        ratingRow.append(category,rating,reviews);
+    }else{
+        ratingRow.append(category);    
+    }
+    
     
     const description = document.createElement("p");
     description.classList.add("menu-description");

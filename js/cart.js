@@ -10,6 +10,19 @@ let totalPriceCart = document.getElementById("cart-total");
 
 
 let cartItems = getCartItems();
+let allReviews = [];
+async function getAllReviews(){
+    try{
+        const response = await fetch("http://localhost:3000/reviews")
+        if(!response.ok) {
+            throw new Error("Failed in fetching reviews");
+        }
+        allReviews = await response.json();
+    }catch(error){
+        console.log(error);
+    }
+}
+
 
 function updateCartCount() {
     let totalCount = 0;
@@ -77,8 +90,9 @@ function createCartCard(item){
     star.textContent = "★ ";
     star.className = "text-amber-500";
 
+    const foodRating = getFoodRating(item.id,allReviews);
     const ratingValue = document.createElement("span");
-    ratingValue.textContent = item.rating;
+    ratingValue.textContent = foodRating.rating;
     rating.append(star, ratingValue);
 
     const price = document.createElement("p");
@@ -162,7 +176,12 @@ function refreshCart(){
     }
     updateCartCount();
 }
-refreshCart();
+
+async function initCart(){
+    await getAllReviews();
+    refreshCart();
+}
+initCart();
 checkoutBtn.addEventListener("click",()=>{
     window.location.href = "./checkout.html";
 });

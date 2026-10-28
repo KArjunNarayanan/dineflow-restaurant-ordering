@@ -18,14 +18,19 @@ async function fetchingOrderDetails(){
     userEmail.textContent = user.email;
     userGreeting.textContent = `Welcome, ${user.name} ☺️`;
     try{
-        const response = await fetch("http://localhost:3000/orders")
-        if(!response.ok){
-            throw new Error("Fetching order details failed!");
+        const [ordersResponse,reviewsResponse] = await Promise.all([fetch("http://localhost:3000/orders"), fetch("http://localhost:3000/reviews")]) 
+        if(!ordersResponse.ok || !reviewsResponse.ok){
+            throw new Error("Fetching order or reviews details failed!");
         }
-        const orders = await response.json();
+        const orders = await ordersResponse.json();
+        const reviews = await reviewsResponse.json();
         const userOrders = orders.filter((order) => {
             return String(order.userId) === String(user.id);
+        });    
+        const userReviews = reviews.filter((review)=>{
+            return String(review.userId) === String(user.id);
         });
+
         orderCount.forEach((orderNo)=>{
             orderNo.textContent = userOrders.length;
         });
@@ -37,7 +42,7 @@ async function fetchingOrderDetails(){
             ordersContainer.appendChild(para1);
         }
         userOrders.forEach((order)=>{
-            ordersContainer.appendChild(createOrderDelivered(order));
+            ordersContainer.appendChild(createOrderDelivered(order,user,userReviews));
         });
     }catch(error){
         console.error("Error fetching orders:", error);
@@ -47,7 +52,7 @@ async function fetchingOrderDetails(){
 }
 fetchingOrderDetails();
 
-function createOrderDelivered(order){   
+function createOrderDelivered(order,user,userReviews){   
     const orderDiv = document.createElement("div");
     orderDiv.className = "py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all duration-300";
 
@@ -70,7 +75,7 @@ function createOrderDelivered(order){
     const detailsDiv = document.createElement("div");
 
     const titleDiv = document.createElement("div");
-    titleDiv.className = "flex items-center gap-2";
+    titleDiv.className = "flex items-center gap-2 mb-5";
 
     const title = document.createElement("h4");
     title.className = "text-base font-bold text-gray-900";
@@ -82,13 +87,84 @@ function createOrderDelivered(order){
 
     titleDiv.append(title,status);
 
-    const items = document.createElement("p");
-    items.className ="text-sm text-gray-600 mt-1 font-medium flex flex-wrap sm:max-w-sm md:max-w-xl";
-    order.items.forEach((item)=>{
-        const fudItems = document.createElement("span");
-        fudItems.textContent = ` ${item.quantity}× ${item.foodName} ● `;
-        items.appendChild(fudItems);
+    const items = document.createElement("div");
+    items.className ="mt-1 flex flex-col gap-2 sm:max-w-xl";
+    order.items.forEach((item) => {
+        const itemRow = document.createElement("div");
+        itemRow.className ="flex flex-wrap items-center gap-3";
+
+        const foodName = document.createElement("span");
+        foodName.className ="text-sm text-gray-700 font-medium";
+        foodName.textContent = `${item.quantity}× ${item.foodName}`;
+
+        itemRow.appendChild(foodName);
+
+        const existingReview = userReviews.find((review) => {
+            return String(review.foodId) === String(item.foodId);
+        });
+
+        if(existingReview){
+            const ratedLabel = document.createElement("span");
+            ratedLabel.className ="text-xs font-semibold text-emerald-600";
+            ratedLabel.textContent =`Rated ${"★".repeat(existingReview.rating)}`;
+            itemRow.appendChild(ratedLabel);
+        }else{
+            const rateButton = document.createElement("button");
+            rateButton.type = "button";
+            rateButton.className ="px-3 py-1 rounded-full border border-orange-200 bg-orange-50 text-orange-600 text-xs font-semibold hover:bg-orange-100 hover:border-orange-300 transition-colors cursor-pointer";
+            rateButton.textContent = "Rate ★";
+            rateButton.addEventListener("click", () => {
+                if (itemRow.querySelector(".rating-selector")) {
+                    return;
+                }
+                const starContainer = document.createElement("div");
+                starContainer.className ="rating-selector flex items-center gap-1";
+                for(let rating = 1; rating <= 5; rating++) {
+                    const starButton = document.createElement("button");
+                    starButton.type = "button";
+                    starButton.textContent = "★";
+                    starButton.className ="text-xl text-amber-400 hover:text-orange-600 hover:scale-110 transition duration-200 cursor-pointer";
+                    starButton.addEventListener("click", async () => {
+                        try {
+                            console.log("Current order:", order);
+                            console.log("Order ID:", order.id);
+                            const response = await fetch("http://localhost:3000/reviews",{
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json"
+                                    },
+                                    body: JSON.stringify({
+                                        userId: user.id,
+                                        foodId: item.foodId,
+                                        orderId: order.id,
+                                        rating: rating
+                                    })
+                            });
+
+                            if (!response.ok) {
+                                throw new Error("Failed to save rating");
+                            }
+
+                            const ratedLabel = document.createElement("span");
+                            ratedLabel.className ="text-xs font-semibold text-emerald-600";
+                            ratedLabel.textContent =`Rated ${"★".repeat(rating)}`;
+
+                            rateButton.replaceWith(ratedLabel);
+                            starContainer.remove();
+                        } catch (error) {
+                            console.error("Error saving rating:", error);
+                            alert("Unable to save rating. Please try again.");
+                        }
+                    });
+                    starContainer.appendChild(starButton);
+                }
+                itemRow.appendChild(starContainer);
+            });
+            itemRow.appendChild(rateButton);
+        }
+        items.appendChild(itemRow);
     });
+
     
     const date = document.createElement("time");
     date.className ="text-xs text-gray-400 mt-0.5";
@@ -98,7 +174,7 @@ function createOrderDelivered(order){
     leftDiv.append(iconDiv, detailsDiv);
 
     const rightDiv = document.createElement("div");
-    rightDiv.className ="flex sm:flex-col items-center sm:items-end justify-between gap-3";
+    rightDiv.className ="flex sm:flex-col items-center sm:items-end justify-between gap-3 sm:gap-15 ";
 
     const price = document.createElement("span");
     price.className ="text-base font-bold text-gray-900";

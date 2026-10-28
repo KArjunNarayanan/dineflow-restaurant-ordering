@@ -1,7 +1,6 @@
 let foodDetailsContainer = document.getElementById("food-details-container");
 let loading = document.getElementById("loading");
 
-
 let selectedFood;
 let quantity = 1;
 let isFavourite = false;
@@ -39,8 +38,22 @@ async function loadFoodDetails() {
     }
 }
 
+let allReviews = [];
+async function getAllReviews(){
+    try{
+        const response = await fetch("http://localhost:3000/reviews")
+        if(!response.ok) {
+            throw new Error("Failed in fetching reviews");
+        }
+        allReviews = await response.json();
+    }catch(error){
+        console.log(error);
+    }
+}
+getAllReviews();
 
 function displayFoodDetails(){
+    const foodRating = getFoodRating(foodId,allReviews);
     foodDetailsContainer.textContent = "";
 
     const mainCard = createElement("div","max-w-7xl mx-auto bg-white rounded-2xl px-4 sm:px-6 lg:px-8 py-8 md:py-10 grid grid-cols-1 md:grid-cols-2 gap-8");
@@ -65,15 +78,19 @@ function displayFoodDetails(){
         const foodDot = createElement("span","size-1 rounded-full bg-emerald-600")
         foodType.appendChild(foodDot);
     }
-    
-
     foodType.appendChild(createElement("span","",selectedFood.dietaryTags[0]))
-    const rating = createElement("span","inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200",
-        "★ " + selectedFood.rating);
+    
+    if(foodRating.reviewCount > 0 ){
+        const rating = createElement("span","inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200",
+            "★ " + foodRating.rating);
 
-    badges.append(foodType,rating);
-    headerSection.appendChild(badges);
-
+        badges.append(foodType,rating);
+        headerSection.appendChild(badges);
+    }else{
+        badges.append(foodType);
+        headerSection.appendChild(badges);
+    }
+    
     const priceSection = createElement("div","mt-4 flex flex-wrap items-baseline gap-2");
     const price = createElement("span","text-3xl font-bold text-gray-900","₹" + selectedFood.price);
     const taxInfo = createElement("span","text-sm text-gray-400 font-medium","Inclusive of all taxes");
@@ -171,7 +188,6 @@ function displayFoodDetails(){
     foodDetailsContainer.appendChild(mainCard);
     
 }
-
 function addToCart(){
     let cart = getCartItems();
     const existingItem = cart.find(function(item) {
