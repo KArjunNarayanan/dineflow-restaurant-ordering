@@ -9,6 +9,10 @@ let timeError = document.getElementById("timeError");
 let guestsError = document.getElementById("guestsError");
 let seatingError = document.getElementById("seatingError");
 
+const today = new Date();
+const localDate = today.getFullYear()+"-"+String(today.getMonth() + 1).padStart(2,"0")+"-"+String(today.getDate()).padStart(2,"0");
+dateInput.min = localDate;
+
 updateNavbarCartCount();
 
 form.addEventListener("submit",async (e)=>{
@@ -63,7 +67,7 @@ form.addEventListener("submit",async (e)=>{
         guests: guests,
         seating: seating,
         table: allocatedTable,
-        specialRequest: specialRequest.value,
+        specialRequest: specialRequest,
         status: "Confirmed",
         createdAt: new Date().toString()
     };
