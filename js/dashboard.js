@@ -291,6 +291,52 @@ function createBooking(booking){
     const rightDiv = document.createElement("div");
     rightDiv.className ="flex items-center justify-end";
 
+    const buttonDiv = document.createElement("div");
+    buttonDiv.className = "flex items-center gap-2";
+
+    const editButton = document.createElement("button");
+    editButton.type = "button";
+    editButton.className = "px-4 py-2 rounded-lg border border-orange-200 text-sm font-semibold text-orange-600 hover:bg-orange-50 cursor-pointer transition-all";
+    editButton.textContent = "Edit Booking";
+
+    
+    editButton.addEventListener("click", async () => {
+        const updatedGuests = prompt("Enter new number of guests:",booking.guests);
+
+        if(updatedGuests === null) return;
+
+        const updatedSeating = prompt("Enter seating preference (Indoor/Outdoor):",booking.seating);
+
+        if(updatedSeating === null) return;
+
+        if(!updatedGuests.trim() || !updatedSeating.trim()) {
+            alert("Please fill all required fields!");
+            return;
+        }
+        try{
+            const response = await fetch(`http://localhost:3000/bookings/${booking.id}`,
+                {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        guests: updatedGuests.trim(),
+                        seating: updatedSeating.trim()
+                    })
+                }
+            );
+            if (!response.ok) {
+                throw new Error("Failed to update booking");
+            }
+            alert("Booking updated successfully!");
+            await fetchBookings();
+        }catch(error) {
+            console.error("Error updating booking:", error);
+            alert("Unable to update booking. Please try again.");
+        }
+    });
+
 
     const cancelButton = document.createElement("button");
     cancelButton.type = "button";
@@ -316,7 +362,8 @@ function createBooking(booking){
         }
     });
     
-    rightDiv.append(cancelButton);
+    buttonDiv.append(editButton, cancelButton);
+    rightDiv.appendChild(buttonDiv);
     bookingDiv.append(leftDiv, rightDiv);
     
     return bookingDiv;
