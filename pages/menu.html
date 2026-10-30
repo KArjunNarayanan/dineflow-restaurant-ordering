@@ -68,16 +68,16 @@
                         <h4 class="text-xs sm:text-sm text-[var(--text-color)] font-medium mb-3">DIETARY</h4>
                         <div class="flex gap-5">
                             <div class="flex justify-center items-center gap-2">
-                                <input type="checkbox" class="dietary-filter w-4 h-4 accent-[var(--primary-color)]" value="Veg">
+                                <input type="checkbox" class="dietary-filter w-4 h-4 accent-[var(--primary-color)]" value="Veg" id="veg">
                                 <label for="veg" class="text-gray-800 text-xs sm:text-sm ">Veg</label>
                             </div>
                             <div class="flex gap-2 justify-center items-center">
-                                <input type="checkbox" class="dietary-filter w-4 h-4 accent-[var(--primary-color)]" value="Non-Veg">
+                                <input type="checkbox" class="dietary-filter w-4 h-4 accent-[var(--primary-color)]" value="Non-Veg" id="non-veg">
                                 <label for="non-veg" class="text-gray-800 text-xs sm:text-sm">Non-Veg</label>
                             </div>
                             <div class="flex gap-2 justify-center items-center">
                                 <input type="checkbox" id="bothDietary" class="dietary-filter w-4 h-4 accent-[var(--primary-color)]" value="Both">
-                                <label for="both" class="text-gray-800 text-xs sm:text-sm">Both</label>
+                                <label for="bothDietary" class="text-gray-800 text-xs sm:text-sm">Both</label>
                             </div>
                         </div>
                     </div>
@@ -85,23 +85,23 @@
                         <h4 class="text-xs sm:text-sm text-[var(--text-color)] font-medium mb-3">PRICE RANGE</h4>
                         <div class="flex gap-5">
                             <div class="flex justify-center items-center gap-2">
-                                <input type="checkbox" class="price-filter w-4 h-4 accent-[var(--primary-color)]" value="under200">
-                                <label for="veg" class="text-gray-800 text-xs sm:text-sm ">Under ₹200</label>
+                                <input type="checkbox" class="price-filter w-4 h-4 accent-[var(--primary-color)]" value="under200" id="200">
+                                <label for="200" class="text-gray-800 text-xs sm:text-sm ">Under ₹200</label>
                             </div>
                             <div class="flex gap-2 justify-center items-center">
-                                <input type="checkbox" class="price-filter w-4 h-4 accent-[var(--primary-color)]" value="200to350">
-                                <label for="non-veg" class="text-gray-800 text-xs sm:text-sm">₹200 - ₹350</label>
+                                <input type="checkbox" class="price-filter w-4 h-4 accent-[var(--primary-color)]" value="200to350" id="200to350">
+                                <label for="200to350" class="text-gray-800 text-xs sm:text-sm">₹200 - ₹350</label>
                             </div>
                             <div class="flex gap-2 justify-center items-center">
-                                <input type="checkbox" class="price-filter w-4 h-4 accent-[var(--primary-color)]" value="over350">
-                                <label for="both" class="text-gray-800 text-xs sm:text-sm">₹350+</label>
+                                <input type="checkbox" class="price-filter w-4 h-4 accent-[var(--primary-color)]" value="over350" id="over350">
+                                <label for="over350" class="text-gray-800 text-xs sm:text-sm">₹350+</label>
                             </div>
                         </div>
                     </div>
                     <div class="price-range-checkboxs">
                         <h4 class="text-xs sm:text-sm text-[var(--text-color)] font-medium mb-3">SORT BY</h4>
                         <select name="priceSort" id="priceSort" class="w-full p-2 sm:p-3 rounded-lg text-sm border border-[var(--text-grey)] outline-none focus:ring-2 ring-[var(--primary-color)] text-gray-600 ">
-                            <option value="Newest First" selected>Newest First</option>
+                            <option value="" selected>Default</option>
                             <option value="priceLowHigh">Price: Low to High</option>
                             <option value="priceHighLow">Price: High to Low</option>
                             <option value="ratingHighLow">Rating: High to Low</option>

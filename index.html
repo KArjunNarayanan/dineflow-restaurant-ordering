@@ -53,8 +53,10 @@
                     </div>
                 </div>
                 <div class="right-section w-full md:w-1/2 flex justify-center mt-8 md:justify-end mb-10">
-                    <div class="rounded-full w-64 h-64 sm:h-80 sm:w-80 md:h-[350px] md:w-[350px] lg:w-[410px] lg:h-[410px] border-4 border-gray-800">
-                        <img src="./assets/images/hero-image-food.jpg" alt="food-image" class="w-full h-full rounded-full object-cover">
+                    <div class="w-full max-w-[480px] aspect-[4/3] rounded-2xl overflow-hidden border-4 border-gray-800 shadow-2xl">
+                        <video class="w-full h-full object-cover" autoplay muted loop playsinline poster="./assets/images/hero-image-food.jpg">
+                            <source src="./assets/istockphoto-2149883167-640_adpp_is.mp4" type="video/mp4">Your browser does not support video playback.
+                        </video>
                     </div>
                 </div>
             </div>
@@ -63,14 +65,14 @@
         <section id="our-specialties" class=" px-4 sm:px-6 py-10">
             <div class="max-w-7xl mx-auto" >
                 <div class=" mb-4 md:py-4 md:mb-6">
-                    <h2 class="text-2xl sm:text-3xl font-bold">Our Specialties</h2>
+                    <h2 class="text-2xl sm:text-3xl font-bold scroll-reveal ">Our Specialties</h2>
                     <div class="para-view-more flex justify-between items-center">
-                        <p class="mt-1 font-normal text-[var(--text-color)] text-sm md:text-base">Discover our most popular dishes, made with love</p>
+                        <p class="mt-1 font-normal text-[var(--text-color)] text-sm md:text-base scroll-reveal ">Discover our most popular dishes, made with love</p>
                         <a href="./pages/menu.html" class="text-[var(--primary-color)] text-sm md:text-base"><span class="desktop-only">View Menu </span><span class="arrow">→</span></a>
                     </div>
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-5 md:gap-7">
-                    <div class="bg-white rounded-2xl p-2 sm:p-3 md:p-4 shadow-sm border border-gray-200 hover:shadow-md transition">
+                    <div class="scroll-reveal bg-white rounded-2xl p-2 sm:p-3 md:p-4 shadow-sm border border-gray-200 hover:shadow-md transition">
                         <div class="overflow-hidden rounded-xl aspect-square">
                             <img src="./assets/images/Pizzas.jpg" alt="Pizza-img" class="w-full h-full object-cover rounded-xl hover:scale-110 transition-transform duration-300 ease-in">
                         </div>
@@ -79,7 +81,7 @@
                             <p class="text-[var(--text-color)] font-normal text-xs sm:text-sm">Italian classics</p>
                         </div>
                     </div>
-                    <div class="bg-white rounded-2xl p-2 sm:p-3 md:p-4shadow-sm border border-gray-200 hover:shadow-md transition">
+                    <div class="scroll-reveal bg-white rounded-2xl p-2 sm:p-3 md:p-4shadow-sm border border-gray-200 hover:shadow-md transition">
                         <div class="overflow-hidden rounded-xl aspect-square">
                             <img src="./assets/images/Burgers.jpg" alt="Burgers-img" class="w-full h-full object-cover rounded-xl hover:scale-110 transition-transform duration-300 ease-in">
                         </div>
@@ -88,7 +90,7 @@
                             <p class="text-[var(--text-color)] font-normal text-xs sm:text-sm">Juicy & fresh</p>
                         </div>
                     </div>
-                    <div class="bg-white rounded-2xl p-2 sm:p-3 md:p-4 shadow-sm border border-gray-200 hover:shadow-md transition">
+                    <div class="scroll-reveal bg-white rounded-2xl p-2 sm:p-3 md:p-4 shadow-sm border border-gray-200 hover:shadow-md transition">
                         <div class="overflow-hidden rounded-xl aspect-square">
                             <img src="./assets/images/Pasta.jpg" alt="Pasta-img" class="w-full h-full object-cover rounded-xl hover:scale-110 transition-transform duration-300 ease-in">
                         </div>
@@ -97,7 +99,7 @@
                             <p class="text-[var(--text-color)] font-normal text-xs sm:text-sm">Rich & flavorful</p>
                         </div>
                     </div>
-                    <div class="bg-white rounded-2xl p-2 sm:p-3 md:p-4 shadow-sm border border-gray-200 hover:shadow-md transition">
+                    <div class="scroll-reveal bg-white rounded-2xl p-2 sm:p-3 md:p-4 shadow-sm border border-gray-200 hover:shadow-md transition">
                         <div class="overflow-hidden rounded-xl aspect-square">
                             <img src="./assets/images/Desserts.jpg" alt="Desserts-img" class="w-full h-full object-cover rounded-xl hover:scale-110 transition-transform duration-300 ease-in">
                         </div>
@@ -112,12 +114,12 @@
 
         <section id="special-offer" class="px-4 sm:px-6 py-6 sm:py-9">
             <div class="max-w-7xl mx-auto bg-[var(--secondary-color)] rounded-2xl overflow-hidden flex md:flex-row flex-col md:items-center md:justify-between">
-                <div class="left-section w-full px-5 sm:px-8 md:px-12 pt-7 pb-20 sm:py-8 md:py-10">
+                <div class="w-full px-5 sm:px-8 md:px-12 pt-7 pb-20 sm:py-8 md:py-10">
                     <p class="text-[var(--primary-color)] font-bold text-sm sm:text-base">SPECIAL OFFER</p>
                     <h2 class="text-white text-2xl sm:text-3xl font-bold mt-3 sm:mt-4 max-w-xl">Get <span class="text-[var(--primary-color)]">20% off </span>on all orders above ₹999!</h2>
                     <button class="mt-5 sm:mt-6 md:mt-8 bg-[var(--primary-color)] text-white sm:px-8 px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition text-sm sm:text-base">Order Now</button>
                 </div>
-                <div class="right-section h-44 sm:h-56  w-full md:w-[32%] md:h-64 flex justify-center items-center">
+                <div class="h-44 sm:h-56  w-full md:w-[32%] md:h-64 flex justify-center items-center">
                     <img src="./assets/images/special-offer-img.jpg" alt="Special offer" class="w-full h-full object-cover object-center md:object-left scale-125">
                 </div>
             </div>
@@ -125,7 +127,7 @@
 
         <section id="popular-menu-items" class="px-6 py-6">
             <div class="max-w-7xl mx-auto flex justify-between items-center py-10">
-                <h2 class="font-bold text-2xl sm:text-3xl">Popular Menu Items</h2>
+                <h2 class="font-bold text-2xl sm:text-3xl scroll-reveal">Popular Menu Items</h2>
                 <a href="./pages/menu.html" class="text-[var(--primary-color)]"><span class="desktop-only">View All </span><span class="arrow">→</span></a>
             </div>
             <div class="popular-menu-card-container max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
@@ -135,7 +137,7 @@
                         <span class="special-badge">KERALA SPECIAL</span>
                         <button class="favorite-btn">♡</button>
                     </div>
-                    <div class="card-content">
+                    <div class="scroll-reveal card-content">
                         <div class="card-content-wrapper">
                             <div class="card-content-head">
                                 <h3>Thalassery Dum Biryani</h3>
@@ -158,7 +160,7 @@
                         <span class="special-badge">KERALA SPECIAL</span>
                         <button class="favorite-btn">♡</button>
                     </div>
-                    <div class="card-content">
+                    <div class="scroll-reveal card-content">
                         <div class="card-content-wrapper">
                             <div class="card-content-head">
                                 <h3>Kerala Beef Roast & Parotta</h3>
@@ -181,7 +183,7 @@
                         <span class="special-badge">KERALA SPECIAL</span>
                         <button class="favorite-btn">♡</button>
                     </div>
-                    <div class="card-content">
+                    <div class="scroll-reveal card-content">
                         <div class="card-content-wrapper">
                             <div class="card-content-head">
                                 <h3>Meen Pollichathu & Parotta</h3>
@@ -203,7 +205,7 @@
                         <img src="./assets/images/penne-alfredo.jpg" alt="Penne Alfredo">
                         <button class="favorite-btn">♡</button>
                     </div>
-                    <div class="card-content">
+                    <div class="scroll-reveal card-content">
                         <div class="card-content-wrapper">
                             <div class="card-content-head">
                                 <h3>Penne Alfredo</h3>
@@ -225,11 +227,11 @@
         <section id="testimonials" class="px-4 py-12 md:py-20"> 
             <div class="max-w-7xl mx-auto">
                 <div class="text-center space-y-2 mb-10">
-                    <h4 class="font-medium text-sm text-[var(--primary-color)]">TESTIMONIALS</h4>
+                    <h4 class="font-medium text-sm text-[var(--primary-color)] scroll-reveal ">TESTIMONIALS</h4>
                     <h2 class="text-3xl font-bold">What Our Diners Say</h2>
-                    <p class="mt-1 font-normal text-[var(--text-color)]">Real experiences from food lovers who dined with us.</p>
+                    <p class="scroll-reveal mt-1 font-normal text-[var(--text-color)]">Real experiences from food lovers who dined with us.</p>
                 </div>
-                <div class="testimonial-card-container grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 px-2 sm:px-5 md:px-10">
+                <div class="scroll-reveal testimonial-card-container grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 px-2 sm:px-5 md:px-10">
                     <div class="testimonial-card rounded-2xl p-5 w-full min-h-[250px] shadow-lg">
                         <span class="text-[var(--primary-color)]">★ ★ ★ ★ ★</span>
                         <p class="font-medium text-[var(--text-color)] text-sm mt-4 pb-6">“The Thalassery Biryani is arguably the most authentic you can get in town! The flavours are nuanced and the meat was perfectly tender.”</p>
@@ -244,7 +246,7 @@
                         </div>
                     </div>
 
-                    <div class="testimonial-card rounded-2xl p-5 w-full min-h-[250px] shadow-lg">
+                    <div class="scroll-reveal testimonial-card rounded-2xl p-5 w-full min-h-[250px] shadow-lg">
                         <span class="text-[var(--primary-color)]">★ ★ ★ ★ ★</span>
                         <p class="font-medium text-[var(--text-color)] text-sm mt-4 pb-6">“Meen Pollichathu wrapped in banana leaf alongside warm Malabar parottas is sheer bliss. DineFlow never disappoints with quality.”</p>
                         <div class="flex gap-4 pt-4 border-t border-[var(--text-grey)]">
@@ -258,7 +260,7 @@
                         </div>
                     </div>
 
-                    <div class="testimonial-card rounded-2xl p-5 w-full min-h-[250px] shadow-lg">
+                    <div class="scroll-reveal testimonial-card rounded-2xl p-5 w-full min-h-[250px] shadow-lg">
                         <span class="text-[var(--primary-color)]">★ ★ ★ ★ ★</span>
                         <p class="font-medium text-[var(--text-color)] text-sm mt-4 pb-6">“Super quick delivery, food arrived piping hot, and the packaging was immaculate. Loved the Penne Alfredo and desserts!”</p>
                         <div class="flex gap-4 pt-4 border-t border-[var(--text-grey)]">

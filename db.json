@@ -17,6 +17,12 @@
       "email": "adhi@gmail.com",
       "password": "Adhi2010",
       "id": "X2KbgaJSdR8"
+    },
+    {
+      "name": "Arjun",
+      "email": "karjunn2003@gmail.com",
+      "password": "Arjun2003",
+      "id": "cQ1_KazeUBU"
     }
   ],
   "orders": [
@@ -334,6 +340,20 @@
       "orderId": "o9fZ2kP_xvs",
       "rating": 1,
       "id": "WliFHAzn3pA"
+    },
+    {
+      "userId": "cQ1_KazeUBU",
+      "foodId": "food101",
+      "orderId": null,
+      "rating": 2,
+      "id": "5a-qOQyJMOY"
+    },
+    {
+      "userId": "cQ1_KazeUBU",
+      "foodId": "food102",
+      "orderId": null,
+      "rating": 5,
+      "id": "Tta0jaDNJFQ"
     }
   ],
   "menu": [

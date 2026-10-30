@@ -8,6 +8,23 @@ const profileUser = document.querySelector(".profile-user");
 const userInitials = document.getElementById("userInitials");
 const userInitialsProfile = document.getElementById("userInitialsProfile");
 
+const revealElements = document.querySelectorAll(".scroll-reveal");
+const observer = new IntersectionObserver((entries)=>{
+    entries.forEach((entry)=>{
+        if(entry.isIntersecting){
+            entry.target.classList.remove("opacity-0","translate-y-8");
+            entry.target.classList.add("opacity-100","translate-y-0");
+        }else{
+            entry.target.classList.add("opacity-0","translate-y-8");
+            entry.target.classList.remove("opacity-100","translate-y-0");
+        }
+    });
+},{threshold:0.15})
+revealElements.forEach((element)=>{
+    element.classList.add("opacity-0","translate-y-8","transition-all","duration-900","ease-out");
+    observer.observe(element);
+});
+
 const user = getLoggedInUser();
 
 if (user) {

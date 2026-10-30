@@ -11,6 +11,37 @@
 
 /* index.html */
 
+
+/* Animations - hero section */
+@keyframes heroTextEnter {
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes heroVideoEnter {
+    from {
+        opacity: 0;
+        transform: translateX(40px) scale(0.92);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+.left-section{
+    animation: heroTextEnter 0.8s ease-out both;
+}
+.right-section{
+    animation: heroVideoEnter 0.8s ease-out 0.7s both;
+}
+
+
+
 .desktop-only{
     display: none;
 }

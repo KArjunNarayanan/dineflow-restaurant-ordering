@@ -2,7 +2,6 @@ const menuContainer = document.getElementById("menu-container");
 const menuSearchInput = document.getElementById("menuSearchInput");
 const dietaryFilters = document.querySelectorAll(".dietary-filter");
 const priceFilters = document.querySelectorAll(".price-filter");
-const profileUserBtn = document.querySelector(".profile-user");
 const bothDietary = document.getElementById("bothDietary");
 const priceSort = document.getElementById("priceSort");
 
@@ -96,7 +95,11 @@ function applyFilters() {
             break;
 
         case "ratingHighLow":
-            filteredFoods.sort((a, b) => b.rating - a.rating);
+            filteredFoods.sort((a, b) => {
+                const ratingA = getFoodRating(a.id,allReviews);
+                const ratingB = getFoodRating(b.id,allReviews);
+                return ratingB.rating - ratingA.rating;
+            });
             break;
     }
     displayMenu(filteredFoods);
@@ -104,14 +107,12 @@ function applyFilters() {
 
 dietaryFilters.forEach((checkbox) => {
     checkbox.addEventListener("change", () => {
-        if(checkbox === bothDietary && bothDietary.checked){
+        if(checkbox.checked){
             dietaryFilters.forEach((filter)=>{
-                if(filter !== bothDietary){
+                if(filter !== checkbox){
                     filter.checked = false;
                 }
             });
-        }else if(checkbox !== bothDietary && checkbox.checked){
-            bothDietary.checked = false;
         }
         applyFilters();
     });
@@ -119,7 +120,16 @@ dietaryFilters.forEach((checkbox) => {
 
 
 priceFilters.forEach((checkbox) => {
-    checkbox.addEventListener("change", applyFilters);
+    checkbox.addEventListener("change", () => {
+        if(checkbox.checked) {
+            priceFilters.forEach((filter) => {
+                if(filter !== checkbox) {
+                    filter.checked = false;
+                }
+            });
+        }
+        applyFilters();
+    });
 });
 
 priceSort.addEventListener("change", applyFilters);
@@ -138,27 +148,17 @@ categoryButtons.forEach((button) => {
         selectedCategory = button.dataset.category;
         activeTab(button);
         applyFilters();
-        if (selectedCategory === "All") {
-            displayMenu(allFoods);
-        } else {
-            const filteredFoods = allFoods.filter((food) => {
-                return food.category === selectedCategory;
-            });
-            displayMenu(filteredFoods);
-        }
     });
 });
 
-menuSearchInput.addEventListener("input",()=>{
-    applyFilters();
-});
+menuSearchInput.addEventListener("input",applyFilters);
 
 function updateMenuContainer(food){
     const card = document.createElement("div");
     card.classList.add("card-menu");
 
     card.addEventListener("click",()=>{
-        let selectedFoodId = localStorage.setItem("selectedFoodId",food.id);
+        localStorage.setItem("selectedFoodId",food.id);
         window.location.href = "./food-details.html";
     });
 
@@ -192,9 +192,6 @@ function updateMenuContainer(food){
         favoriteButton.textContent = "♡";
     }
 
-    profileUserBtn.addEventListener("click",()=>{
-        
-    });
     favoriteButton.addEventListener("click",(e)=>{
         e.stopPropagation();
         if(!checkUserLogin()){
