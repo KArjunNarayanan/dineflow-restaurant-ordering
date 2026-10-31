@@ -284,7 +284,7 @@ function updateMenuContainer(food){
             id: food.id,
             name: food.name,
             image: food.image,
-            rating: food.rating,
+            rating: foodRating.rating,
             price: food.price,
             quantity: 1,
             type: food.dietaryTags[0].toLowerCase()

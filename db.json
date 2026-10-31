@@ -23,6 +23,18 @@
       "email": "karjunn2003@gmail.com",
       "password": "Arjun2003",
       "id": "cQ1_KazeUBU"
+    },
+    {
+      "name": "arjun",
+      "email": "arjun3432@gmail.com",
+      "password": "Karjun2003",
+      "id": "FDcT6HQyu2Q"
+    },
+    {
+      "name": "arjun",
+      "email": "arjun2003@gmail.com",
+      "password": "Arjun2003",
+      "id": "2WIZsyexHmM"
     }
   ],
   "orders": [
@@ -131,23 +143,6 @@
       "date": "Wed Oct 28 2026 , 5:04:21 PM",
       "status": "Delivered",
       "id": "J0AYJCaDT9I"
-    },
-    {
-      "userId": "of5eqHPAaH0",
-      "name": "K Arjun",
-      "deliveryAddress": "KIZHAKKINIYIL HOUSE P.O CHIRAKKAL , PANAMKAVE",
-      "phone": "9072713432",
-      "items": [
-        {
-          "foodId": "food105",
-          "foodName": "Paneer Butter Masala",
-          "quantity": 6
-        }
-      ],
-      "total": 1360,
-      "date": "Wed Oct 28 2026 , 5:05:10 PM",
-      "status": "Delivered",
-      "id": "Y2kMdabw8bE"
     },
     {
       "userId": "X2KbgaJSdR8",
@@ -322,7 +317,7 @@
     {
       "userId": "of5eqHPAaH0",
       "foodId": "food105",
-      "orderId": "Y2kMdabw8bE",
+      "orderId": null,
       "rating": 3,
       "id": "tA8xOw-TxmU"
     },
@@ -386,15 +381,8 @@
       "userId": "of5eqHPAaH0",
       "foodId": "food102",
       "orderId": null,
-      "rating": 5,
-      "id": "YdvZ_OOhwd0"
-    },
-    {
-      "userId": "of5eqHPAaH0",
-      "foodId": "food106",
-      "orderId": null,
       "rating": 3,
-      "id": "d_MafvhRam0"
+      "id": "6j-K6WbSvJk"
     }
   ],
   "menu": [
@@ -653,22 +641,10 @@
   "bookings": [
     {
       "userId": "of5eqHPAaH0",
-      "date": "2026-10-14",
-      "time": "8:30 PM (DINNER)",
-      "guests": "8 Guests",
-      "seating": "Outdoor",
-      "table": "Table #07",
-      "specialRequest": "Dinner Special",
-      "status": "Confirmed",
-      "createdAt": "Sun Oct 25 2026 20:44:17 GMT+0530 (India Standard Time)",
-      "id": "oleuSbHcwS4"
-    },
-    {
-      "userId": "of5eqHPAaH0",
       "date": "2026-10-29",
       "time": "6:30 PM (DINNER)",
-      "guests": "10+ Guests (Large)",
-      "seating": "Outdoor Patio",
+      "guests": "3 Guests",
+      "seating": "Indoor Patio",
       "table": "Table #04",
       "status": "Confirmed",
       "createdAt": "Mon Oct 26 2026 17:27:28 GMT+0530 (India Standard Time)",
@@ -706,6 +682,18 @@
       "status": "Confirmed",
       "createdAt": "Mon Oct 26 2026 19:14:33 GMT+0530 (India Standard Time)",
       "id": "zzqodbYCnaA"
+    },
+    {
+      "userId": "of5eqHPAaH0",
+      "date": "2026-11-07",
+      "time": "7:30 PM (DINNER)",
+      "guests": "4 Guests",
+      "seating": "Outdoor",
+      "table": "Table #12",
+      "specialRequest": "kjdf",
+      "status": "Confirmed",
+      "createdAt": "Sat Oct 31 2026 10:25:07 GMT+0530 (India Standard Time)",
+      "id": "YoH3S34WU-g"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

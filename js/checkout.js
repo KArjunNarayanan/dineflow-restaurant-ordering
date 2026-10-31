@@ -39,7 +39,7 @@ let itemsInCart = [];
 let cartItems = getCartItems();
     cartListCheckout.textContent = "";
     cartItems.forEach((item) => {
-        foodItems = {
+        const foodItems = {
             foodId: item.id,
             foodName: item.name,
             quantity: item.quantity

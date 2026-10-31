@@ -126,8 +126,6 @@ function createOrderDelivered(order,user,userReviews){
                     starButton.className ="text-xl text-amber-400 hover:text-orange-600 hover:scale-110 transition duration-200 cursor-pointer";
                     starButton.addEventListener("click", async () => {
                         try {
-                            console.log("Current order:", order);
-                            console.log("Order ID:", order.id);
                             const response = await fetch("http://localhost:3000/reviews",{
                                     method: "POST",
                                     headers: {
@@ -186,7 +184,7 @@ function createOrderDelivered(order,user,userReviews){
     const cancelButton = document.createElement("button");
     cancelButton.type = "button";
     cancelButton.className ="px-3 py-1.5 whitespace-nowrap rounded-lg border border-red-200 text-xs font-semibold text-red-600 hover:bg-red-50 flex items-center gap-1.5 transition";
-    cancelButton.textContent = "Delete Order";
+    cancelButton.textContent = "Cancel Order";
     cancelButton.addEventListener("click",async ()=>{
         const confirmDeleteOrder = confirm("Are you sure want to delete this order?");
         if(!confirmDeleteOrder) return;

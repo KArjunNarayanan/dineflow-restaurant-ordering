@@ -123,7 +123,7 @@ signupForm.addEventListener("submit",async (e)=>{
         signupPasswordError.textContent = "This is a required field*";
         isValid = false;
     } else if (!passwordPattern.test(password)) {
-        signupPasswordError.textContent ="Password should contain min 8 digits,uppercase,special characters";
+        signupPasswordError.textContent ="Password should contain min 8 characters atleast one digits,uppercase,lowercase";
         isValid = false;
     }
 
@@ -176,7 +176,7 @@ signupForm.addEventListener("submit",async (e)=>{
         signupForm.reset();
         setTimeout(()=>{
             loginClick();
-        },3000);
+        },1500);
     }catch (error) {
         console.error(error);
         signupMessage.textContent ="Something went wrong. Please try again.";
